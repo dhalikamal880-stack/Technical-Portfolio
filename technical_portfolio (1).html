@@ -1,0 +1,2065 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}
+
+/* ---------- Page 3 visual pass: dome lamps, visible liquid boxes, focused light pools ---------- */
+.vault-room { min-height:clamp(520px,68vh,690px); }
+.vault-lamp .fixture {
+  top:clamp(24px,5.2vh,54px); width:66px; height:43px;
+  clip-path:none; border:1px solid rgba(115,210,255,.28);
+  border-top:2px solid var(--lamp-edge,#00cfff);
+  border-radius:48% 48% 5px 5px / 64% 64% 7px 7px;
+  background:linear-gradient(100deg,#050912 0%,#111a2a 18%,#202a3b 36%,#080d18 64%,#171d2b 82%,#04070d 100%);
+  box-shadow:inset 0 5px 10px rgba(255,255,255,.035), inset 0 -5px 8px rgba(0,0,0,.9), 0 7px 13px rgba(0,0,0,.65),0 0 12px color-mix(in srgb,var(--lamp-edge) 20%,transparent);
+  filter:none;
+}
+.vault-lamp:nth-child(1) { --lamp-edge:#00cfff; }
+.vault-lamp:nth-child(2) { --lamp-edge:#ff4f9a; }
+.vault-lamp:nth-child(3) { --lamp-edge:#00cfff; }
+.vault-lamp .fixture::before {
+  inset:4px 8px 7px; clip-path:none; border-radius:50% 50% 3px 3px / 68% 68% 5px 5px;
+  background:linear-gradient(100deg,#02050b,#10192a 45%,#03060c); box-shadow:inset 0 0 10px rgba(0,0,0,.95);
+}
+.vault-lamp .fixture::after {
+  left:-2px; right:-2px; bottom:-1px; height:3px; border-radius:50%;
+  background:linear-gradient(90deg,#101725,var(--lamp-edge),#d8f6ff,var(--lamp-edge),#101725);
+  box-shadow:0 2px 6px rgba(0,0,0,.7),0 0 10px color-mix(in srgb,var(--lamp-edge) 60%,transparent);
+}
+.vault-lamp .cord { top:-70px; height:clamp(96px,17vh,158px); background:linear-gradient(90deg,#222a37,#8799ae 48%,#30394a); box-shadow:0 0 3px rgba(160,220,255,.2); }
+.vault-lamp .bulb {
+  top:calc(clamp(24px,5.2vh,54px) + 38px); width:16px; height:13px; border-radius:50%;
+  background:radial-gradient(ellipse at 40% 28%,#fff 0%,#f1fdff 36%,#b9efff 62%,#49cfff 100%);
+  opacity:.12; box-shadow:0 0 8px #fff;
+}
+.vault-lamp .beam {
+  top:calc(clamp(24px,5.2vh,54px) + 42px); width:min(310px,30vw); height:clamp(270px,39vh,390px);
+  clip-path:polygon(47% 0,53% 0,100% 100%,0 100%); filter:blur(13px);
+  background-size:100% 240%; mix-blend-mode:screen;
+}
+.vault-lamp:nth-child(1) .beam { background-image:linear-gradient(to bottom,rgba(91,224,255,.74),rgba(0,190,255,.32) 36%,rgba(0,190,255,.11) 76%,rgba(0,190,255,0) 100%); }
+.vault-lamp:nth-child(2) .beam { background-image:linear-gradient(to bottom,rgba(255,126,195,.72),rgba(255,45,151,.32) 38%,rgba(255,45,151,.12) 78%,rgba(255,45,151,0) 100%); }
+.vault-lamp:nth-child(3) .beam { background-image:linear-gradient(to bottom,rgba(91,224,255,.64),rgba(0,190,255,.27) 38%,rgba(255,79,154,.12) 78%,rgba(0,190,255,0) 100%); }
+#project-vault.lit .vault-lamp .beam { opacity:1; animation:vaultLightFlow 4.2s ease-in-out infinite alternate; }
+#project-vault.lit .vault-lamp:nth-child(2) .bulb { box-shadow:0 0 8px #fff,0 0 20px #ff6db5,0 0 42px rgba(255,45,151,.95); }
+#project-vault.lit .vault-lamp:nth-child(1) .bulb,
+#project-vault.lit .vault-lamp:nth-child(3) .bulb { box-shadow:0 0 8px #fff,0 0 20px #75e5ff,0 0 42px rgba(0,190,255,.95); }
+
+/* Smaller, clearly solid boxes with a much more visible animated liquid surface. */
+.vault-cards { inset:40% 2% 8%; align-items:center; gap:clamp(12px,2vw,28px); }
+.vault-card { width:min(100%,218px); max-width:218px; aspect-ratio:1/1; overflow:hidden;
+  border:1px solid color-mix(in srgb,var(--card-glow) 88%,#fff 12%);
+  border-right:7px solid color-mix(in srgb,var(--card-glow) 52%,#050912);
+  border-bottom:9px solid color-mix(in srgb,var(--card-glow) 38%,#02040a);
+  background:#02050d;
+  box-shadow:9px 12px 0 rgba(0,0,0,.58),16px 25px 32px rgba(0,0,0,.72),
+    0 0 22px color-mix(in srgb,var(--card-glow) 25%,transparent),
+    inset 0 2px 0 rgba(255,255,255,.34), inset -8px 0 15px rgba(0,0,0,.48), inset 0 -10px 18px rgba(0,0,0,.52);
+}
+.vault-card canvas { opacity:1 !important; filter:contrast(1.42) saturate(1.5) brightness(1.18); }
+.vault-card .card-shade { background:linear-gradient(180deg,rgba(2,5,14,.015),rgba(2,5,14,.06) 32%,rgba(2,5,14,.34) 72%,rgba(2,5,14,.78)); }
+.vault-card .card-index { text-shadow:0 0 9px var(--card-glow); }
+.vault-card .card-title { text-shadow:0 0 5px #02040a,0 0 16px color-mix(in srgb,var(--card-glow) 80%,transparent); }
+.vault-card:nth-child(1) { max-width:204px; }
+.vault-card:nth-child(2) { max-width:218px; }
+.vault-card:nth-child(3) { max-width:204px; }
+#project-vault.lit .vault-card {
+  box-shadow:9px 12px 0 rgba(0,0,0,.62),16px 25px 32px rgba(0,0,0,.72),
+    0 0 32px color-mix(in srgb,var(--card-glow) 45%,transparent),
+    0 22px 42px color-mix(in srgb,var(--card-glow) 17%,transparent),
+    inset 0 2px 0 rgba(255,255,255,.38), inset -8px 0 15px rgba(0,0,0,.42), inset 0 -10px 18px rgba(0,0,0,.5);
+}
+.vault-floor {
+  background-image:
+    radial-gradient(ellipse at 18% 18%,rgba(0,207,255,.23),transparent 26%),
+    radial-gradient(ellipse at 50% 14%,rgba(255,79,154,.23),transparent 28%),
+    radial-gradient(ellipse at 82% 18%,rgba(0,207,255,.2),transparent 26%),
+    linear-gradient(rgba(0,190,255,.10) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,190,255,.10) 1px,transparent 1px);
+  background-size:100% 100%,100% 100%,100% 100%,35px 35px,35px 35px;
+  box-shadow:inset 0 15px 22px rgba(0,0,0,.55);
+}
+#project-vault.lit .vault-floor { filter:brightness(1.4); }
+@media (max-width:700px) {
+  .vault-cards { inset:31% 0 46px; }
+  .vault-card,.vault-card:nth-child(1),.vault-card:nth-child(2),.vault-card:nth-child(3) { width:min(76%,270px); max-width:270px; aspect-ratio:1.65/1; }
+  .vault-lamp .fixture { width:53px; height:36px; }
+  .vault-lamp .bulb { top:calc(clamp(24px,5.2vh,54px) + 32px); }
+  .vault-lamp .beam { width:31vw; height:235px; }
+}
+
+</style></head><body>
+<title>Kamal Dhali Portfolio</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: black-gradient intro (neon wires tangle behind a neon name), then a work section that slides up like a curtain over it, holding three tall neon-wave panels with About Me in the centre. */
+:root {
+  --neon: #2ef2ff;
+  --ink: #05060a;
+  --ink-2: #11141c;
+  --fg: #f1f4ec;
+  --muted: #98a3b6;
+  --line: rgba(255,255,255,.16);
+  --accent: #00e5ff;
+  --mag: #ff3df2;
+  --f-display: "Unbounded", "Arial Black", system-ui, sans-serif;
+  --f-body: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  color-scheme: dark;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+html.locked { overflow: hidden; }
+body {
+  margin: 0;
+  background: var(--ink);
+  color: var(--fg);
+  font-family: var(--f-body);
+  font-size: 16px;
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+button { font: inherit; color: inherit; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+/* ---------- Intro ---------- */
+#stage {
+  --p: 0;
+  position: sticky;
+  top: 0;
+  z-index: 0;
+  height: 100vh;
+  height: 100svh;
+  min-height: 460px;
+  overflow: hidden;
+  background: none;
+}
+.stage-inner {
+  position: absolute; inset: 0;
+  transform-origin: 50% 40%;
+  transform: scale(calc(1 + var(--p) * .14));
+  opacity: calc(1 - var(--p) * .85);
+  filter: blur(calc(var(--p) * 12px));
+}
+#bg { position: fixed; z-index: -1; inset: -3%; width: 106%; height: 106%; display: block; filter: blur(5px); }
+#scene { position: absolute; inset: 0; width: 100%; height: 100%; display: block; transition: filter 1.6s ease, transform 1.6s ease; }
+#scene.blur { filter: blur(2px) brightness(.8); transform: scale(1.02); }
+.name {
+  --nx: 0px; --ny: 0px; --rx: 0deg; --ry: 0deg;
+  position: absolute; left: 50%; top: 45%;
+  width: min(90vw, 1080px);
+  margin: 0;
+  transform: translate(-50%, -50%) translate3d(var(--nx), var(--ny), 0) perspective(900px) rotateX(var(--rx)) rotateY(var(--ry));
+  will-change: transform;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1s ease;
+}
+.name svg { display: none; width: 100%; height: auto; overflow: visible; }
+.name.fallback svg { display: block; }
+.name text { font-family: var(--f-display); font-weight: 500; font-size: 96px; letter-spacing: .04em; }
+.name .ext {
+  --i: 1;
+  fill: hsl(190, 70%, calc(30% - var(--i) * 2.6%));
+  stroke: rgba(46,242,255,.18); stroke-width: .6;
+  opacity: 0;
+  transform: translate(calc((1.3 - var(--sx, 0) * 2.4) * var(--i) * 1px), calc((1.9 - var(--sy, 0) * 2.2) * var(--i) * 1px));
+  transition: opacity 1.6s ease;
+}
+.name.on2 .ext { opacity: 1; }
+.name .face {
+  font-family: var(--f-display);
+  font-weight: 500;
+  font-size: 96px;
+  letter-spacing: .04em;
+  fill: rgba(220, 246, 250, 0);
+  stroke: rgba(170, 236, 244, .85);
+  stroke-width: 1.1;
+  stroke-linecap: round; stroke-linejoin: round;
+  stroke-dasharray: 2400; stroke-dashoffset: 2400;
+  transition: fill 1.6s ease, stroke 1.6s ease;
+}
+.name.on1 { opacity: 1; filter: drop-shadow(0 0 5px rgba(46,242,255,.28)); }
+.name.on1 .face { animation: write 2.4s cubic-bezier(.45,.05,.25,1) forwards; }
+.name.on2 .face { fill: rgba(228, 248, 252, .95); stroke: rgba(190, 240, 248, .7); }
+.name.on2 { filter: drop-shadow(0 0 4px rgba(46,242,255,.25)) drop-shadow(0 0 22px rgba(46,242,255,.16)); }
+@keyframes write { to { stroke-dashoffset: 0; } }
+.mono-tag {
+  position: absolute; z-index: 2;
+  top: calc(18px + env(safe-area-inset-top, 0px));
+  left: max(16px, env(safe-area-inset-left, 0px));
+  font-family: var(--f-mono); font-size: 12px; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--muted);
+}
+.skip {
+  position: absolute; z-index: 2;
+  top: calc(12px + env(safe-area-inset-top, 0px));
+  right: max(16px, env(safe-area-inset-right, 0px));
+  padding: 9px 16px; border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.3);
+  background: rgba(255,255,255,.06);
+  color: #dfe7f5;
+  font-family: var(--f-mono); font-size: 12px; letter-spacing: .14em; text-transform: uppercase;
+  cursor: pointer; backdrop-filter: blur(6px);
+  transition: background .2s, color .2s;
+}
+.skip:hover { background: var(--neon); color: #03060a; border-color: var(--neon); }
+.caption {
+  position: absolute; left: 0; right: 0;
+  bottom: calc(15vh + env(safe-area-inset-bottom, 0px));
+  padding-inline: max(16px, env(safe-area-inset-left, 0px)) max(16px, env(safe-area-inset-right, 0px));
+  margin: 0; text-align: center;
+  font-family: var(--f-display); font-weight: 700;
+  font-size: clamp(10px, 1.2vw, 15px);
+  letter-spacing: .34em; text-transform: uppercase;
+  color: #c3cde0;
+  opacity: 0; transform: translateY(10px);
+  transition: opacity .9s ease, transform .9s ease;
+  pointer-events: none;
+}
+.cue {
+  position: absolute; z-index: 2; left: 50%;
+  bottom: calc(4.5vh + env(safe-area-inset-bottom, 0px));
+  transform: translate(-50%, 10px);
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  background: none; border: 0; cursor: pointer;
+  font-family: var(--f-mono); font-size: 11px; letter-spacing: .3em; text-transform: uppercase;
+  color: #c3cde0;
+  opacity: 0; transition: opacity .9s ease, transform .9s ease;
+}
+.cue i { display: block; width: 1px; height: 34px; background: var(--neon); transform-origin: top; animation: drip 1.8s ease-in-out infinite; }
+@keyframes drip { 0% { transform: scaleY(0); } 55% { transform: scaleY(1); } 100% { transform: scaleY(1); opacity: 0; } }
+#stage.show-cap .caption { opacity: 1; transform: none; }
+#stage.show-cue .cue { opacity: 1; transform: translate(-50%, 0); }
+
+
+/* ---------- Cyberpunk intro (matches the neon wave panels) ---------- */
+#bg { filter: blur(2px) saturate(1.1); }
+#scene {
+  filter: drop-shadow(0 0 8px rgba(0,229,255,.75)) drop-shadow(0 0 34px rgba(255,61,242,.4));
+  animation: glitch 7s step-end 7s infinite;
+}
+@keyframes glitch {
+  0%, 100% { translate: 0 0; filter: drop-shadow(0 0 8px rgba(0,229,255,.75)) drop-shadow(0 0 34px rgba(255,61,242,.4)); }
+  92.5% { translate: -6px 0; filter: drop-shadow(6px 0 0 rgba(255,61,242,.9)) drop-shadow(-6px 0 0 rgba(0,229,255,.9)); }
+  93.5% { translate: 5px 1px; filter: drop-shadow(-5px 0 0 rgba(255,61,242,.9)) drop-shadow(5px 0 0 rgba(0,229,255,.9)); }
+  94.5% { translate: 0 0; filter: drop-shadow(0 0 8px rgba(0,229,255,.75)) drop-shadow(0 0 34px rgba(255,61,242,.4)); }
+  97% { translate: 3px 0; filter: drop-shadow(3px 0 0 rgba(255,61,242,.8)) drop-shadow(-3px 0 0 rgba(0,229,255,.8)); }
+  98% { translate: 0 0; filter: drop-shadow(0 0 8px rgba(0,229,255,.75)) drop-shadow(0 0 34px rgba(255,61,242,.4)); }
+}
+.grid-floor {
+  position: absolute; left: -50%; right: -50%; bottom: 0; height: 46%;
+  pointer-events: none; opacity: .3;
+  background-image:
+    linear-gradient(rgba(0,229,255,.6) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,61,242,.5) 1px, transparent 1px);
+  background-size: 64px 64px;
+  transform: perspective(420px) rotateX(62deg); transform-origin: 50% 100%;
+  -webkit-mask-image: linear-gradient(to top, #000 0%, transparent 85%);
+  mask-image: linear-gradient(to top, #000 0%, transparent 85%);
+  animation: gridmove 2.4s linear infinite;
+}
+@keyframes gridmove { to { background-position: 0 64px, 0 0; } }
+.scan {
+  position: absolute; inset: 0; z-index: 1; pointer-events: none; overflow: hidden;
+  background: repeating-linear-gradient(0deg, rgba(0,0,0,.12) 0 1px, transparent 1px 3px);
+}
+.scan::after {
+  content: ""; position: absolute; left: 0; right: 0; height: 18%; top: -18%;
+  background: linear-gradient(180deg, transparent, rgba(46,242,255,.08), transparent);
+  animation: sweep 7s linear infinite;
+}
+@keyframes sweep { to { top: 100%; } }
+.hud {
+  position: absolute; z-index: 2; width: 34px; height: 34px; pointer-events: none;
+  border: 2px solid var(--neon); filter: drop-shadow(0 0 6px var(--neon)); opacity: .5;
+}
+.hud.tl { top: calc(60px + env(safe-area-inset-top, 0px)); left: max(16px, env(safe-area-inset-left, 0px)); border-right: 0; border-bottom: 0; }
+.hud.tr { top: calc(60px + env(safe-area-inset-top, 0px)); right: max(16px, env(safe-area-inset-right, 0px)); border-left: 0; border-bottom: 0; border-color: var(--mag); filter: drop-shadow(0 0 6px var(--mag)); }
+.hud.bl { bottom: calc(16px + env(safe-area-inset-bottom, 0px)); left: max(16px, env(safe-area-inset-left, 0px)); border-right: 0; border-top: 0; border-color: var(--mag); filter: drop-shadow(0 0 6px var(--mag)); }
+.hud.br { bottom: calc(16px + env(safe-area-inset-bottom, 0px)); right: max(16px, env(safe-area-inset-right, 0px)); border-left: 0; border-top: 0; }
+.mono-tag { color: var(--neon); text-shadow: 0 0 8px rgba(46,242,255,.7); display: inline-flex; align-items: center; gap: 10px; }
+.mono-tag .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--mag); box-shadow: 0 0 8px var(--mag); animation: blink 1.4s steps(2, end) infinite; }
+@keyframes blink { 50% { opacity: .15; } }
+.skip {
+  border-radius: 0; border: 1px solid var(--neon); background: rgba(0,229,255,.08);
+  color: var(--neon); text-shadow: 0 0 8px rgba(46,242,255,.7);
+  clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+}
+.caption { color: #c8fdff; text-shadow: 0 0 10px rgba(46,242,255,.85), 2px 0 0 rgba(255,61,242,.55), -2px 0 0 rgba(0,229,255,.35); }
+.cue { color: var(--neon); text-shadow: 0 0 8px rgba(46,242,255,.7); }
+.cue i { background: var(--mag); box-shadow: 0 0 8px var(--mag); }
+/* fallback (no WebGL) name */
+.name .ext { fill: hsl(calc(300 - var(--i) * 5), 85%, calc(34% - var(--i) * 2.6%)); stroke: rgba(255,61,242,.3); }
+.name .face { stroke: rgba(120,250,255,.95); }
+.name.on2 .face { fill: rgba(232,253,255,.97); stroke: rgba(120,250,255,.95); }
+.name.on2 { filter: drop-shadow(0 0 6px rgba(46,242,255,.8)) drop-shadow(0 0 28px rgba(46,242,255,.5)) drop-shadow(0 0 60px rgba(255,61,242,.35)); }
+@media (prefers-reduced-motion: reduce) {
+  #scene, .grid-floor, .scan::after, .mono-tag .dot { animation: none; }
+}
+
+
+/* ---------- Name: Unbounded display type with a neon gradient, drawn in then filled ---------- */
+.name svg { display: block; }
+.name .ext { display: none; }
+.name .face {
+  font-weight: 700; letter-spacing: .02em;
+  fill: url(#ng); fill-opacity: 0;
+  stroke: rgba(150,250,255,.95); stroke-width: 1.2;
+  stroke-dasharray: 6000; stroke-dashoffset: 6000;
+  transition: fill-opacity 1.4s ease;
+}
+.name.on2 .face { fill: url(#ng); fill-opacity: 1; stroke: rgba(255,255,255,.55); stroke-width: .6; }
+.name.on1 { filter: drop-shadow(0 0 6px rgba(46,242,255,.55)); }
+.name.on2 {
+  filter: drop-shadow(2px 0 0 rgba(255,61,242,.7)) drop-shadow(-2px 0 0 rgba(0,229,255,.7))
+          drop-shadow(0 0 16px rgba(0,229,255,.45)) drop-shadow(0 0 46px rgba(255,61,242,.3));
+}
+@media (prefers-reduced-motion: reduce) {
+  .name .face { stroke-dashoffset: 0; transition: none; }
+}
+
+/* ---------- New intro: the name is built by the particle canvas, the SVG is kept only for screen readers ---------- */
+.name svg { display: none !important; }
+.name { opacity: 0 !important; }
+
+/* ---------- Gallery (slides up over the intro like a curtain) ---------- */
+#work {
+  position: relative; z-index: 1;
+  border-radius: 34px 34px 0 0;
+  box-shadow: 0 -40px 90px rgba(0,0,0,.7);
+  padding-block: clamp(56px, 9vh, 110px) calc(48px + env(safe-area-inset-bottom, 0px));
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  background:
+    radial-gradient(ellipse 60% 40% at 50% 0%, rgba(46,242,255,.08), transparent 70%),
+    rgba(5,6,10,.4);
+}
+#work::before { content: ""; position: absolute; top: 0; left: 12%; right: 12%; height: 1px; background: linear-gradient(90deg, transparent, var(--neon), transparent); opacity: .7; }
+.work-head { max-width: 1200px; margin: 0 auto clamp(28px, 5vh, 56px); display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 14px 32px; }
+.eyebrow { font-family: var(--f-mono); font-size: 12px; letter-spacing: .24em; text-transform: uppercase; color: var(--muted); margin: 0 0 12px; }
+.work-head h2 { margin: 0; font-family: var(--f-display); font-weight: 800; font-size: clamp(2.2rem, 6.4vw, 5rem); line-height: .98; letter-spacing: -.02em; text-wrap: balance; }
+.work-head p { margin: 0; max-width: 34ch; color: var(--muted); }
+.panels { position: relative; max-width: 1200px; margin: 0 auto; display: flex; justify-content: center; align-items: center; gap: clamp(12px, 2vw, 28px); }
+.panel {
+  --glow: #00e5ff;
+  --d: 0s;
+  position: relative;
+  flex: 0 0 auto;
+  height: min(60vh, 520px);
+  aspect-ratio: 9 / 16;
+  min-width: 0;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  overflow: hidden;
+  background: var(--ink-2);
+  cursor: pointer;
+  text-align: left;
+  isolation: isolate;
+  translate: 0 0; scale: 1;
+  transition:
+    translate .95s cubic-bezier(.2,.8,.2,1) var(--d),
+    scale .95s cubic-bezier(.2,.8,.2,1) var(--d),
+    opacity .95s ease var(--d),
+    transform .5s cubic-bezier(.2,.8,.2,1),
+    box-shadow .5s, border-color .5s;
+}
+.panel.main { height: min(74vh, 650px); }
+.panel:not(.main) { --d: .14s; }
+.panel.pre { opacity: 0; translate: 0 90px; scale: .94; }
+.panel:hover, .panel:focus-visible {
+  transform: translateY(-8px);
+  border-color: var(--glow);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--glow) 50%, transparent), 0 24px 70px -18px var(--glow);
+}
+.panel canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; z-index: -2; }
+.panel::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(5,6,10,.28) 0%, rgba(5,6,10,0) 30%, rgba(5,6,10,.82) 100%); }
+.panel.nogl { background: linear-gradient(160deg, color-mix(in srgb, var(--glow) 40%, #090b10), #090b10 70%); }
+.p-tag { position: absolute; top: 20px; left: 20px; font-family: var(--f-mono); font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: var(--fg); }
+.p-body { position: absolute; left: 20px; right: 20px; bottom: 22px; display: flex; flex-direction: column; gap: 14px; }
+.p-title { font-family: var(--f-display); font-weight: 700; font-size: clamp(1.15rem, 1.7vw, 1.5rem); line-height: 1.12; letter-spacing: -.01em; text-wrap: balance; color: #fff; }
+.panel.main .p-title { font-size: clamp(1.5rem, 2.3vw, 2.1rem); }
+.p-open { align-self: flex-start; display: inline-flex; align-items: center; gap: 10px; padding: 8px 14px; border-radius: 999px; border: 1px solid rgba(255,255,255,.4); font-family: var(--f-mono); font-size: 11px; letter-spacing: .16em; text-transform: uppercase; background: rgba(5,6,10,.4); backdrop-filter: blur(4px); transition: background .3s, color .3s; }
+.panel:hover .p-open, .panel:focus-visible .p-open { background: var(--glow); color: #05070a; border-color: var(--glow); }
+.foot { max-width: 1200px; margin: clamp(36px, 6vh, 64px) auto 0; padding-top: 18px; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; font-family: var(--f-mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+
+/* ---------- Opened page ---------- */
+.page { position: fixed; inset: 0; z-index: 50; background: var(--ink); overflow: hidden; clip-path: circle(0px at 50% 50%); }
+.page canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.veil { position: absolute; inset: 0; background: linear-gradient(100deg, rgba(6,8,12,.86) 0%, rgba(6,8,12,.58) 55%, rgba(6,8,12,.4) 100%); }
+.back {
+  position: absolute; z-index: 3;
+  top: calc(14px + env(safe-area-inset-top, 0px));
+  left: max(16px, env(safe-area-inset-left, 0px));
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 10px 16px; border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.35);
+  background: rgba(6,8,12,.55); backdrop-filter: blur(6px);
+  font-family: var(--f-mono); font-size: 12px; letter-spacing: .16em; text-transform: uppercase; cursor: pointer;
+  transition: background .25s, color .25s;
+}
+.back:hover { background: var(--accent); color: #05070a; border-color: var(--accent); }
+.scroll {
+  position: absolute; inset: 0; z-index: 2; overflow-y: auto; overscroll-behavior: contain;
+  padding-block: calc(110px + env(safe-area-inset-top, 0px)) calc(70px + env(safe-area-inset-bottom, 0px));
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.inner { max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; gap: 28px; }
+.inner > * { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.8,.2,1); }
+.page.ready .inner > * { opacity: 1; transform: none; }
+.page.ready .inner > *:nth-child(2) { transition-delay: .08s; }
+.page.ready .inner > *:nth-child(3) { transition-delay: .16s; }
+.page.ready .inner > *:nth-child(4) { transition-delay: .24s; }
+.page.ready .inner > *:nth-child(5) { transition-delay: .32s; }
+.inner .eyebrow { color: var(--accent); margin: 0; }
+.inner h2 { margin: 0; font-family: var(--f-display); font-weight: 800; font-size: clamp(2.1rem, 7vw, 4.6rem); line-height: 1; letter-spacing: -.025em; text-wrap: balance; }
+.inner .lead { margin: 0; max-width: 62ch; font-size: clamp(1.05rem, 1.5vw, 1.25rem); line-height: 1.7; color: #e3e8e0; }
+.chips { display: flex; flex-wrap: wrap; gap: 10px; margin: 0; padding: 0; list-style: none; }
+.chips li { padding: 8px 15px; border-radius: 999px; border: 1px solid color-mix(in srgb, var(--accent) 60%, transparent); color: var(--accent); font-family: var(--f-mono); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; background: rgba(6,8,12,.5); }
+.tools { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 360px), 1fr)); gap: 14px; margin: 0; padding: 0; list-style: none; }
+.tools li { min-width: 0; padding: 20px; border: 1px solid var(--line); border-radius: 14px; background: rgba(8,10,14,.62); backdrop-filter: blur(6px); display: flex; flex-direction: column; gap: 6px; }
+.tools b { font-family: var(--f-display); font-weight: 700; font-size: 1.1rem; color: var(--accent); }
+.tools span { color: #cdd4cb; font-size: .95rem; }
+.slot { padding: 24px; border: 1.5px dashed color-mix(in srgb, var(--accent) 55%, transparent); border-radius: 14px; background: rgba(8,10,14,.5); display: flex; flex-direction: column; gap: 8px; }
+.slot b { font-family: var(--f-mono); font-size: 12px; letter-spacing: .18em; text-transform: uppercase; color: var(--accent); font-weight: 500; }
+.slot span { max-width: 56ch; color: #d3dad1; }
+.github-links a { color: var(--accent); text-decoration-color: color-mix(in srgb,var(--accent) 55%,transparent); text-underline-offset: 4px; }
+.github-links a:hover { color: #fff; }
+
+/* Phones and small tablets: tall panels in a swipeable strip, About Me centred and larger */
+@media (max-width: 960px) {
+  .panels {
+    justify-content: flex-start; align-items: center;
+    overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain;
+    margin-inline: -16px; padding-inline: 14vw; padding-block: 14px 26px;
+    scrollbar-width: none;
+  }
+  .panels::-webkit-scrollbar { display: none; }
+  .panel, .panel.main { height: auto; scroll-snap-align: center; }
+  .panel { width: 66vw; }
+  .panel.main { width: 76vw; }
+  .mono-tag { display: none; }
+}
+@media (min-width: 600px) and (max-width: 960px) {
+  .panel { width: 44vw; }
+  .panel.main { width: 52vw; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .panel, .caption, .cue, .inner > *, .name, #scene { transition: none; }
+  .name.on1 .face { animation: none; stroke-dashoffset: 0; }
+  .name .face, .name .ext { transition: none; stroke-dashoffset: 0; }
+  .cue i { animation: none; transform: none; }
+}
+
+
+/* ---------- Page 3: neon-wave project vault ---------- */
+#project-vault {
+  position: relative; isolation: isolate; min-height: 100vh; min-height: 100svh;
+  padding: clamp(58px, 8vh, 100px) clamp(18px, 5vw, 72px) 76px;
+  overflow: hidden; background: radial-gradient(ellipse at 50% 45%, #10101d 0%, #05060a 58%, #020307 100%);
+  border-top: 1px solid rgba(46,242,255,.16);
+}
+#project-vault::before {
+  content:""; position:absolute; inset:0; z-index:-2; pointer-events:none;
+  background: linear-gradient(rgba(46,242,255,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(46,242,255,.035) 1px, transparent 1px);
+  background-size: 48px 48px; mask-image: linear-gradient(to bottom, transparent, #000 18%, #000 82%, transparent);
+}
+#project-vault::after {
+  content:""; position:absolute; left:-10%; right:-10%; bottom:-25%; height:58%; z-index:-1; pointer-events:none;
+  background: radial-gradient(ellipse at 32% 20%, rgba(0,190,255,.14), transparent 35%), radial-gradient(ellipse at 70% 20%, rgba(255,61,160,.14), transparent 36%);
+  filter: blur(22px);
+}
+.vault-head { max-width: 1080px; margin: 0 auto 30px; display:flex; justify-content:space-between; align-items:end; gap:24px; }
+.vault-head .eyebrow { margin:0 0 10px; color:#4ccfff; font: 11px var(--f-mono); letter-spacing:.22em; text-transform:uppercase; }
+.vault-head h2 { margin:0; font:700 clamp(25px,4vw,46px)/1.12 var(--f-display); letter-spacing:-.04em; color:#eef8ff; text-shadow:0 0 24px rgba(0,190,255,.14); }
+.vault-head .vault-note { max-width:280px; margin:0; color:#9ba8bd; font:12px/1.65 var(--f-mono); text-align:right; }
+.vault-room { position:relative; max-width:1080px; min-height:clamp(480px, 65vh, 660px); margin:auto; perspective:1200px; }
+.vault-lamps { position:absolute; inset:0 0 auto; height:48%; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); pointer-events:none; }
+.vault-lamp { position:relative; display:flex; justify-content:center; height:100%; }
+.vault-lamp .cord { position:absolute; top:-70px; width:1px; height:clamp(90px,16vh,150px); background:linear-gradient(#4e6079,rgba(125,175,220,.6)); box-shadow:0 0 5px rgba(0,190,255,.24); }
+.vault-lamp .fixture { position:absolute; top:clamp(20px,5vh,50px); width:76px; height:48px; clip-path:polygon(22% 0,78% 0,100% 100%,0 100%); background:linear-gradient(125deg,#172a3a,#263548 45%,#0b1220); border:1px solid rgba(255,255,255,.12); filter:drop-shadow(0 4px 10px rgba(0,0,0,.8)); }
+.vault-lamp .bulb { position:absolute; top:calc(clamp(20px,5vh,50px) + 39px); width:11px; height:7px; border-radius:50%; background:#a7edff; opacity:.18; box-shadow:0 0 6px #00cfff; transition:opacity .6s,box-shadow .6s; }
+.vault-lamp .beam { position:absolute; top:calc(clamp(20px,5vh,50px) + 47px); width:min(220px, 22vw); height:clamp(180px,30vh,300px); clip-path:polygon(46% 0,54% 0,100% 100%,0 100%); opacity:0; filter:blur(4px); transition:opacity .7s; }
+.vault-lamp:nth-child(1) .beam { background:linear-gradient(to bottom,rgba(0,190,255,.42),rgba(0,190,255,.05)); }
+.vault-lamp:nth-child(2) .beam { background:linear-gradient(to bottom,rgba(255,61,160,.42),rgba(255,61,160,.045)); }
+.vault-lamp:nth-child(3) .beam { background:linear-gradient(to bottom,rgba(0,190,255,.22),rgba(255,61,160,.08)); }
+#project-vault.lit .vault-lamp .bulb { opacity:1; box-shadow:0 0 8px #bff5ff,0 0 26px #00bfff,0 0 50px rgba(0,190,255,.8); }
+#project-vault.lit .vault-lamp .beam { opacity:1; }
+.vault-rope-control { position:absolute; top:0; left:50%; z-index:5; transform:translateX(-50%); width:44px; height:142px; padding:0; border:0; background:transparent; cursor:grab; touch-action:pan-y; }
+.vault-rope-control:active { cursor:grabbing; }
+.vault-rope-control .rope { position:absolute; left:50%; top:-10px; width:2px; height:94px; transform:translateX(-50%); background:linear-gradient(#68768c,#d2eaff); box-shadow:0 0 6px rgba(0,190,255,.35); }
+.vault-rope-control .pull { position:absolute; top:78px; left:50%; transform:translateX(-50%); width:15px; height:31px; border-radius:8px; background:linear-gradient(90deg,#5c86a8,#c3f4ff 48%,#2879ab); box-shadow:0 0 12px rgba(0,190,255,.9),0 0 28px rgba(0,190,255,.5); transition:transform .18s; }
+.vault-rope-control:hover .pull,.vault-rope-control:focus-visible .pull { transform:translate(-50%,5px); }
+.vault-rope-control:focus-visible { outline:2px solid #00cfff; outline-offset:4px; border-radius:12px; }
+.vault-cards { position:absolute; inset:34% 0 0; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); align-items:center; gap:clamp(14px,3vw,38px); perspective:1100px; }
+.vault-card { --card-glow:#00cfff; position:relative; display:block; aspect-ratio:1/1; width:100%; max-width:280px; justify-self:center; overflow:hidden; isolation:isolate; border:1px solid color-mix(in srgb,var(--card-glow) 55%,transparent); border-radius:3px; color:#f1f8ff; text-decoration:none; background:#030711; box-shadow:0 22px 38px rgba(0,0,0,.55), inset 0 0 0 1px rgba(255,255,255,.035); transform-style:preserve-3d; opacity:0; visibility:hidden; transform:translateY(24px) rotateX(10deg) rotateY(0deg) scale(.96); transition:opacity .7s,visibility .7s,transform .7s cubic-bezier(.2,.75,.2,1),box-shadow .4s,border-color .4s; cursor:pointer; }
+.vault-card::before { content:""; position:absolute; z-index:-1; inset:0; pointer-events:none; background:linear-gradient(135deg,rgba(255,255,255,.12),transparent 25%,transparent 72%,rgba(255,255,255,.035)); }
+.vault-card canvas { position:absolute; inset:0; width:100%; height:100%; display:block; z-index:-2; opacity:.9; transition:opacity .6s; }
+.vault-card .card-shade { position:absolute; inset:0; background:linear-gradient(180deg,rgba(2,5,14,.08),rgba(2,5,14,.38) 52%,rgba(2,5,14,.92)); pointer-events:none; }
+.vault-card .card-copy { position:absolute; inset:auto 16px 17px; display:flex; flex-direction:column; align-items:flex-start; gap:7px; transform:translateZ(32px); }
+.vault-card .card-index { color:var(--card-glow); font:10px var(--f-mono); letter-spacing:.2em; }
+.vault-card .card-title { font:700 clamp(13px,1.45vw,19px)/1.2 var(--f-display); letter-spacing:-.035em; text-shadow:0 0 14px color-mix(in srgb,var(--card-glow) 35%,transparent); }
+.vault-card .card-link { font:10px var(--f-mono); letter-spacing:.16em; color:#b8c8d9; }
+.vault-card:nth-child(1) { --card-glow:#00cfff; transform:translateY(12px) translateZ(-35px) rotateY(7deg) rotateX(7deg) scale(.88); }
+.vault-card:nth-child(2) { --card-glow:#ff4f9a; max-width:300px; z-index:2; transform:translateY(-10px) translateZ(45px) rotateX(4deg) scale(1.04); }
+.vault-card:nth-child(3) { --card-glow:#ff4f9a; transform:translateY(12px) translateZ(-35px) rotateY(-7deg) rotateX(7deg) scale(.88); }
+#project-vault.lit .vault-card { opacity:1; visibility:visible; }
+#project-vault.lit .vault-card:nth-child(1) { transform:translateY(12px) translateZ(-35px) rotateY(7deg) rotateX(7deg) scale(.88); }
+#project-vault.lit .vault-card:nth-child(2) { transform:translateY(-10px) translateZ(45px) rotateX(4deg) scale(1.04); }
+#project-vault.lit .vault-card:nth-child(3) { transform:translateY(12px) translateZ(-35px) rotateY(-7deg) rotateX(7deg) scale(.88); }
+#project-vault.lit .vault-card:hover,#project-vault.lit .vault-card:focus-visible { z-index:4; transform:translateY(-7px) translateZ(75px) rotateX(0) rotateY(0) scale(1.06); border-color:var(--card-glow); box-shadow:0 25px 50px rgba(0,0,0,.62),0 0 24px color-mix(in srgb,var(--card-glow) 22%,transparent),inset 0 0 22px color-mix(in srgb,var(--card-glow) 10%,transparent); outline:none; }
+#project-vault.lit .vault-card:hover canvas,#project-vault.lit .vault-card:focus-visible canvas { opacity:1; }
+.vault-floor { position:absolute; z-index:-1; left:-9%; right:-9%; bottom:-7%; height:34%; transform:perspective(460px) rotateX(58deg); transform-origin:top; background:linear-gradient(rgba(0,190,255,.1) 1px,transparent 1px),linear-gradient(90deg,rgba(0,190,255,.1) 1px,transparent 1px); background-size:35px 35px; border-top:1px solid rgba(0,190,255,.3); mask-image:linear-gradient(to bottom,#000,transparent); }
+.vault-hint { position:absolute; left:0; right:0; bottom:0; text-align:center; color:#8495ab; font:10px var(--f-mono); letter-spacing:.16em; text-transform:uppercase; }
+#project-vault.lit .vault-hint { color:#8adfff; }
+@media (max-width:700px) {
+  .vault-head { align-items:start; flex-direction:column; gap:8px; }
+  .vault-head .vault-note { text-align:left; }
+  .vault-room { min-height:660px; }
+  .vault-lamps { height:34%; }
+  .vault-lamp .fixture { width:53px; height:35px; }
+  .vault-lamp .beam { width:27vw; height:220px; }
+  .vault-cards { inset:30% 0 44px; grid-template-columns:1fr; grid-template-rows:repeat(3,minmax(130px,1fr)); gap:13px; align-items:center; }
+  .vault-card,.vault-card:nth-child(1),.vault-card:nth-child(2),.vault-card:nth-child(3),#project-vault.lit .vault-card:nth-child(1),#project-vault.lit .vault-card:nth-child(2),#project-vault.lit .vault-card:nth-child(3) { width:min(78%,330px); max-width:330px; aspect-ratio:2.2/1; transform:translateY(12px) scale(.96); }
+  #project-vault.lit .vault-card:nth-child(2) { transform:translateY(0) scale(1.02); }
+  #project-vault.lit .vault-card:hover,#project-vault.lit .vault-card:focus-visible { transform:translateY(-3px) scale(1.03); }
+  .vault-card .card-copy { inset:auto 13px 12px; gap:4px; }
+  .vault-card .card-title { font-size:15px; }
+  .vault-card .card-link { font-size:9px; }
+  .vault-floor { height:18%; bottom:0; }
+  .vault-hint { bottom:8px; font-size:9px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .vault-card,.vault-card canvas,.vault-lamp .bulb,.vault-lamp .beam,.vault-rope-control .pull { transition:none; }
+}
+
+
+/* ---------- Page 3 refinement: pendant lamps, right-side pull, real light fall ---------- */
+.vault-rope-control {
+  left: auto !important; right: 5.5% !important; transform: none !important;
+  width: 42px; z-index: 8;
+}
+.vault-rope-control .rope {
+  left: 50%; height: 104px; width: 2px;
+  background: linear-gradient(90deg,#17273b 0%,#c8e7ff 48%,#536d8b 100%);
+  box-shadow: 0 0 4px rgba(90,190,255,.32);
+}
+.vault-rope-control .pull {
+  top: 88px; width: 17px; height: 34px; border-radius: 5px 5px 8px 8px;
+  background: linear-gradient(90deg,#18354c 0%,#8bdcff 27%,#e7faff 48%,#3b8ebc 72%,#10273d 100%);
+  box-shadow: inset 0 1px 2px rgba(255,255,255,.75), inset 0 -3px 5px rgba(0,0,0,.35), 0 0 12px rgba(0,190,255,.75), 0 0 30px rgba(0,190,255,.3);
+}
+.vault-rope-control:hover .pull,.vault-rope-control:focus-visible .pull { transform:translate(-50%,7px); }
+
+/* More believable metal pendant shades with a visible lower rim and inner reflector. */
+.vault-lamp .fixture {
+  top: clamp(22px,5vh,52px); width: 82px; height: 53px;
+  clip-path: polygon(31% 0,69% 0,100% 82%,94% 91%,6% 91%,0 82%);
+  background: linear-gradient(105deg,#070d17 0%,#293b50 17%,#64758a 28%,#18283b 48%,#0a101d 70%,#405269 88%,#101927 100%);
+  border: 0; filter: drop-shadow(0 9px 10px rgba(0,0,0,.78)) drop-shadow(0 0 9px rgba(0,190,255,.10));
+}
+.vault-lamp .fixture::before {
+  content:""; position:absolute; inset:3px 8px 8px;
+  clip-path: polygon(31% 0,69% 0,100% 82%,94% 91%,6% 91%,0 82%);
+  background: linear-gradient(110deg,#0a1422,#24384c 45%,#080f1a 100%);
+  box-shadow: inset 0 0 12px rgba(0,0,0,.8);
+}
+.vault-lamp .fixture::after {
+  content:""; position:absolute; left:0; right:0; bottom:4px; height:4px;
+  background:linear-gradient(90deg,#101c2b,#b7d4e9 24%,#263c51 52%,#8da9c2 78%,#101b2a);
+  box-shadow:0 2px 5px rgba(0,0,0,.65),0 0 8px rgba(160,220,255,.2);
+}
+.vault-lamp .cord { z-index:1; width:2px; background:linear-gradient(90deg,#27364a,#b5cce2 48%,#3a4a61); }
+.vault-lamp .bulb {
+  z-index:2; top:calc(clamp(22px,5vh,52px) + 44px); width:13px; height:10px;
+  border-radius:50%; background:radial-gradient(ellipse at 40% 30%,#fff 0%,#dffaff 30%,#57d7ff 65%,#0874bb 100%);
+  opacity:.13; box-shadow:0 0 8px #a9f1ff; transition:opacity .6s,box-shadow .6s;
+}
+.vault-lamp:nth-child(1) .fixture { filter:drop-shadow(0 8px 10px rgba(0,0,0,.8)) drop-shadow(0 0 8px rgba(0,190,255,.16)); }
+.vault-lamp:nth-child(2) .fixture { filter:drop-shadow(0 8px 10px rgba(0,0,0,.8)) drop-shadow(0 0 8px rgba(255,79,154,.14)); }
+.vault-lamp:nth-child(3) .fixture { filter:drop-shadow(0 8px 10px rgba(0,0,0,.8)) drop-shadow(0 0 8px rgba(255,79,154,.14)); }
+.vault-lamp .beam {
+  top:calc(clamp(22px,5vh,52px) + 48px); width:min(250px,25vw); height:clamp(210px,34vh,340px);
+  clip-path:polygon(47% 0,53% 0,100% 100%,0 100%); opacity:0; filter:blur(7px);
+  background-size:100% 220%; background-position:0 0;
+}
+.vault-lamp:nth-child(1) .beam { background-image:linear-gradient(to bottom,rgba(75,218,255,.58),rgba(0,190,255,.18) 44%,rgba(0,190,255,.015)); }
+.vault-lamp:nth-child(2) .beam { background-image:linear-gradient(to bottom,rgba(255,118,191,.56),rgba(255,61,160,.18) 45%,rgba(255,61,160,.015)); }
+.vault-lamp:nth-child(3) .beam { background-image:linear-gradient(to bottom,rgba(83,211,255,.42),rgba(255,79,154,.16) 54%,rgba(255,79,154,.012)); }
+#project-vault.lit .vault-lamp .bulb { opacity:1; box-shadow:0 0 7px #fff,0 0 17px #75e5ff,0 0 36px rgba(0,190,255,.95); }
+#project-vault.lit .vault-lamp:nth-child(2) .bulb,
+#project-vault.lit .vault-lamp:nth-child(3) .bulb { box-shadow:0 0 7px #fff,0 0 17px #ff9cc9,0 0 36px rgba(255,61,160,.85); }
+#project-vault.lit .vault-lamp .beam { opacity:1; animation:vaultLightFlow 4.8s ease-in-out infinite alternate; }
+#project-vault.lit .vault-lamp:nth-child(2) .beam { animation-delay:-1.6s; }
+#project-vault.lit .vault-lamp:nth-child(3) .beam { animation-delay:-3.1s; }
+@keyframes vaultLightFlow { from { background-position:0 0; opacity:.72; } to { background-position:0 100%; opacity:1; } }
+
+/* The lamps illuminate the top faces; thick shaded edges create a tangible box silhouette. */
+.vault-card {
+  border:1px solid color-mix(in srgb,var(--card-glow) 68%,#d9f5ff 8%);
+  border-right:5px solid color-mix(in srgb,var(--card-glow) 35%,#050912);
+  border-bottom:7px solid color-mix(in srgb,var(--card-glow) 24%,#02040a);
+  border-radius:2px;
+  background:linear-gradient(135deg,rgba(255,255,255,.08),transparent 24%),#030711;
+  box-shadow: 8px 12px 0 rgba(0,0,0,.42), 14px 22px 28px rgba(0,0,0,.55),
+    0 0 0 1px rgba(110,210,255,.08), inset 0 1px 0 rgba(255,255,255,.22), inset -7px 0 12px rgba(0,0,0,.38), inset 0 -9px 15px rgba(0,0,0,.45);
+}
+.vault-card::before {
+  z-index:1; background:linear-gradient(145deg,rgba(255,255,255,.22),rgba(255,255,255,.04) 16%,transparent 35%,transparent 72%,rgba(255,255,255,.04));
+}
+.vault-card::after {
+  content:""; position:absolute; z-index:0; inset:-8% -10% 28%; pointer-events:none;
+  background:radial-gradient(ellipse at 50% 0%,color-mix(in srgb,var(--card-glow) 42%,transparent),transparent 63%);
+  opacity:0; transition:opacity .7s;
+}
+.vault-card canvas { z-index:0; }
+.vault-card .card-shade { z-index:1; background:linear-gradient(180deg,rgba(2,5,14,.02),rgba(2,5,14,.18) 35%,rgba(2,5,14,.86)); }
+.vault-card .card-copy { z-index:2; }
+#project-vault.lit .vault-card {
+  box-shadow:8px 12px 0 rgba(0,0,0,.48),14px 22px 28px rgba(0,0,0,.62),
+    0 0 26px color-mix(in srgb,var(--card-glow) 25%,transparent), inset 0 1px 0 rgba(255,255,255,.28), inset -8px 0 14px rgba(0,0,0,.36), inset 0 -9px 15px rgba(0,0,0,.48);
+}
+#project-vault.lit .vault-card::after { opacity:.9; }
+#project-vault.lit .vault-card:hover,#project-vault.lit .vault-card:focus-visible {
+  box-shadow:10px 14px 0 rgba(0,0,0,.45),18px 28px 38px rgba(0,0,0,.7),
+    0 0 32px color-mix(in srgb,var(--card-glow) 36%,transparent), inset 0 1px 0 rgba(255,255,255,.35), inset -8px 0 14px rgba(0,0,0,.32);
+}
+.vault-floor { background-color:rgba(1,5,13,.65); box-shadow:inset 0 15px 22px rgba(0,0,0,.55); }
+@media (max-width:700px) {
+  .vault-rope-control { right:2% !important; left:auto !important; }
+  .vault-lamp .fixture { width:57px; height:39px; }
+  .vault-lamp .beam { width:29vw; height:205px; }
+  .vault-card { border-right-width:4px; border-bottom-width:5px; }
+}
+@media (prefers-reduced-motion: reduce) { #project-vault.lit .vault-lamp .beam { animation:none; } }
+
+
+
+/* ---------- Page 3 lighting pass: equal-depth boxes + foreground light flow ---------- */
+/* Keep Projects on the same rear plane as PCB Design and Simulations. */
+#project-vault.lit .vault-card:nth-child(2) {
+  transform:translateY(12px) translateZ(-35px) rotateY(0deg) rotateX(7deg) scale(.88);
+  max-width:280px;
+  z-index:1;
+}
+#project-vault.lit .vault-card:nth-child(2):hover,
+#project-vault.lit .vault-card:nth-child(2):focus-visible {
+  transform:translateY(-4px) translateZ(8px) rotateX(2deg) scale(.94);
+}
+/* A stronger center spotlight lands directly on the Projects box. */
+.vault-lamp:nth-child(2) .beam {
+  width:min(280px,28vw);
+  height:clamp(250px,39vh,390px);
+  background-image:linear-gradient(to bottom,
+    rgba(255,220,246,.34) 0%,
+    rgba(255,79,154,.42) 24%,
+    rgba(255,61,160,.25) 56%,
+    rgba(255,61,160,.045) 100%);
+  filter:blur(5px);
+}
+#project-vault.lit .vault-lamp:nth-child(2) .beam {
+  opacity:1;
+  animation:vaultLightFlow 3.8s ease-in-out infinite alternate, vaultBeamPulse 5.2s ease-in-out infinite;
+}
+@keyframes vaultBeamPulse {
+  0%,100% { filter:blur(5px); opacity:.78; }
+  50% { filter:blur(8px); opacity:1; }
+}
+/* Visible spill and a moving glint sit on the front face, not behind the box. */
+.vault-card::after {
+  z-index:3;
+  inset:-5% -14% -8%;
+  opacity:0;
+  background:
+    radial-gradient(ellipse at 50% 5%,color-mix(in srgb,var(--card-glow) 52%,transparent),transparent 56%),
+    linear-gradient(112deg,transparent 28%,color-mix(in srgb,var(--card-glow) 0%,transparent) 40%,color-mix(in srgb,var(--card-glow) 34%,transparent) 49%,rgba(220,250,255,.16) 52%,transparent 61%);
+  background-size:100% 100%,240% 100%;
+  background-position:center,150% 0;
+  mix-blend-mode:screen;
+}
+#project-vault.lit .vault-card::after {
+  opacity:.95;
+  animation:vaultFrontFlow 5.5s ease-in-out infinite;
+}
+#project-vault.lit .vault-card:nth-child(2)::after { animation-delay:-1.8s; }
+#project-vault.lit .vault-card:nth-child(3)::after { animation-delay:-3.4s; }
+@keyframes vaultFrontFlow {
+  0%,100% { background-position:center,150% 0; }
+  50% { background-position:center,-45% 0; }
+}
+.vault-card .card-copy { z-index:4; }
+/* A soft pool beneath each cube makes the beam feel grounded on the floor. */
+#project-vault.lit .vault-card {
+  box-shadow:
+    8px 12px 0 rgba(0,0,0,.5),
+    14px 22px 28px rgba(0,0,0,.64),
+    0 18px 36px color-mix(in srgb,var(--card-glow) 18%,transparent),
+    0 0 28px color-mix(in srgb,var(--card-glow) 25%,transparent),
+    inset 0 1px 0 rgba(255,255,255,.3),
+    inset -8px 0 14px rgba(0,0,0,.36),
+    inset 0 -9px 15px rgba(0,0,0,.45);
+}
+@media (max-width:700px) {
+  #project-vault.lit .vault-card:nth-child(2) { transform:translateY(0) scale(.96); }
+  #project-vault.lit .vault-card:nth-child(2):hover,
+  #project-vault.lit .vault-card:nth-child(2):focus-visible { transform:translateY(-3px) scale(1.02); }
+}
+@media (prefers-reduced-motion:reduce) {
+  #project-vault.lit .vault-card::after,
+  #project-vault.lit .vault-lamp:nth-child(2) .beam { animation:none; }
+}
+
+
+/* ---------- Reference-matched workshop lighting pass ---------- */
+/* Industrial flared pendant lamps like the supplied reference. */
+.vault-lamp .fixture {
+  top:clamp(30px,5.8vh,58px) !important;
+  width:clamp(66px,6.1vw,88px) !important;
+  height:clamp(42px,4.5vh,54px) !important;
+  clip-path:polygon(23% 0,77% 0,100% 100%,0 100%) !important;
+  border:0 !important;
+  border-top:1px solid rgba(255,255,255,.12) !important;
+  border-radius:0 0 2px 2px !important;
+  background:linear-gradient(180deg,#172536 0%,#0a1421 32%,#050a12 100%) !important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 7px 18px rgba(0,0,0,.7),0 0 18px color-mix(in srgb,var(--lamp-edge) 26%,transparent) !important;
+}
+.vault-lamp .fixture::before {
+  inset:auto 0 -2px !important; height:4px !important;
+  border-radius:0 !important; clip-path:none !important;
+  background:linear-gradient(90deg,transparent,var(--lamp-edge),#effcff,var(--lamp-edge),transparent) !important;
+  box-shadow:0 0 8px color-mix(in srgb,var(--lamp-edge) 70%,transparent) !important;
+}
+.vault-lamp .fixture::after {
+  left:calc(50% - 5px) !important; right:auto !important;
+  bottom:-2px !important; width:10px !important; height:4px !important;
+  border-radius:50% !important;
+  background:#f4fdff !important;
+  box-shadow:0 0 7px #fff,0 0 18px var(--lamp-edge) !important;
+}
+.vault-lamp:nth-child(1), .vault-lamp:nth-child(3) { --lamp-edge:#00cfff !important; }
+.vault-lamp:nth-child(2) { --lamp-edge:#ff168f !important; }
+.vault-lamp .cord {
+  top:-70px !important;
+  height:clamp(108px,18vh,165px) !important;
+  background:linear-gradient(90deg,#161d2a,#9ba9b9 48%,#252d3b) !important;
+  box-shadow:0 0 3px rgba(160,220,255,.16) !important;
+}
+.vault-lamp .bulb {
+  top:calc(clamp(30px,5.8vh,58px) + 40px) !important;
+  width:15px !important; height:10px !important;
+  background:radial-gradient(ellipse at 50% 35%,#fff 0%,#f6fdff 38%,var(--lamp-edge) 100%) !important;
+  opacity:.12 !important;
+}
+.vault-lamp .beam {
+  top:calc(clamp(30px,5.8vh,58px) + 45px) !important;
+  width:min(330px,31vw) !important;
+  height:clamp(290px,43vh,430px) !important;
+  clip-path:polygon(47% 0,53% 0,100% 100%,0 100%) !important;
+  filter:blur(13px) !important;
+  background-size:100% 220% !important;
+  mix-blend-mode:screen !important;
+}
+.vault-lamp:nth-child(1) .beam {
+  background-image:linear-gradient(to bottom,rgba(100,229,255,.7),rgba(0,207,255,.32) 38%,rgba(0,207,255,.12) 74%,rgba(0,207,255,0) 100%) !important;
+}
+.vault-lamp:nth-child(2) .beam {
+  background-image:linear-gradient(to bottom,rgba(255,230,247,.68),rgba(255,22,143,.4) 34%,rgba(255,22,143,.17) 72%,rgba(255,22,143,0) 100%) !important;
+}
+.vault-lamp:nth-child(3) .beam {
+  background-image:linear-gradient(to bottom,rgba(100,229,255,.68),rgba(0,207,255,.3) 38%,rgba(0,207,255,.12) 74%,rgba(0,207,255,0) 100%) !important;
+}
+#project-vault.lit .vault-lamp:nth-child(1) .bulb,
+#project-vault.lit .vault-lamp:nth-child(3) .bulb {
+  opacity:1 !important;
+  box-shadow:0 0 8px #fff,0 0 20px #75e5ff,0 0 42px rgba(0,207,255,.98) !important;
+}
+#project-vault.lit .vault-lamp:nth-child(2) .bulb {
+  opacity:1 !important;
+  box-shadow:0 0 8px #fff,0 0 20px #ff83c0,0 0 42px rgba(255,22,143,.95) !important;
+}
+#project-vault.lit .vault-lamp .beam {
+  opacity:1 !important;
+  animation:vaultLightFlow 4.4s ease-in-out infinite alternate !important;
+}
+
+/* Rope stays on the right so it never blocks the three fixtures. */
+.vault-rope-control {
+  left:auto !important; right:3.2% !important; transform:none !important;
+  z-index:8 !important;
+}
+.vault-rope-control .rope { left:50% !important; }
+.vault-rope-control .pull { left:50% !important; }
+
+/* All three cubes sit on the same rear plane; Projects is no longer pushed forward. */
+.vault-card:nth-child(1),
+.vault-card:nth-child(2),
+.vault-card:nth-child(3),
+#project-vault.lit .vault-card:nth-child(1),
+#project-vault.lit .vault-card:nth-child(2),
+#project-vault.lit .vault-card:nth-child(3) {
+  width:min(100%,204px) !important;
+  max-width:204px !important;
+  aspect-ratio:1/1 !important;
+  transform:translateY(12px) translateZ(-35px) rotateX(7deg) scale(.88) !important;
+  z-index:1 !important;
+}
+#project-vault.lit .vault-card:hover,
+#project-vault.lit .vault-card:focus-visible {
+  transform:translateY(2px) translateZ(0) rotateX(2deg) scale(.94) !important;
+}
+/* Strong overhead illumination lands on the upper face and spills around the cube. */
+.vault-card {
+  --card-glow:#00cfff;
+  border-top:1px solid color-mix(in srgb,var(--card-glow) 74%,#fff 26%) !important;
+  border-left:1px solid color-mix(in srgb,var(--card-glow) 64%,#fff 12%) !important;
+  border-right:8px solid color-mix(in srgb,var(--card-glow) 30%,#050912) !important;
+  border-bottom:10px solid color-mix(in srgb,var(--card-glow) 22%,#02040a) !important;
+  background:
+    radial-gradient(ellipse at 50% 0%,color-mix(in srgb,var(--card-glow) 28%,transparent),transparent 58%),
+    linear-gradient(135deg,rgba(255,255,255,.12),transparent 38%),
+    #030711 !important;
+  box-shadow:
+    9px 12px 0 rgba(0,0,0,.58),
+    16px 27px 34px rgba(0,0,0,.72),
+    0 24px 38px color-mix(in srgb,var(--card-glow) 20%,transparent),
+    inset 0 3px 0 rgba(255,255,255,.38),
+    inset -9px 0 16px rgba(0,0,0,.48),
+    inset 0 -12px 20px rgba(0,0,0,.56) !important;
+}
+.vault-card:nth-child(1) { --card-glow:#00cfff !important; }
+.vault-card:nth-child(2) { --card-glow:#ff168f !important; }
+.vault-card:nth-child(3) { --card-glow:#00cfff !important; }
+.vault-card canvas { opacity:1 !important; filter:contrast(1.62) saturate(1.75) brightness(1.28) !important; }
+.vault-card .card-shade {
+  background:linear-gradient(180deg,rgba(1,6,15,.02),rgba(1,6,15,.08) 35%,rgba(1,6,15,.7) 100%) !important;
+}
+.vault-card::before {
+  z-index:1 !important;
+  background:
+    radial-gradient(ellipse at 50% 0%,color-mix(in srgb,var(--card-glow) 35%,transparent),transparent 62%),
+    linear-gradient(135deg,rgba(255,255,255,.26),rgba(255,255,255,.035) 18%,transparent 42%,transparent 72%,rgba(255,255,255,.04)) !important;
+}
+.vault-card::after {
+  z-index:3 !important;
+  inset:-8% -15% -12% !important;
+  background:
+    radial-gradient(ellipse at 50% 8%,color-mix(in srgb,var(--card-glow) 56%,transparent),transparent 62%),
+    linear-gradient(112deg,transparent 27%,transparent 39%,color-mix(in srgb,var(--card-glow) 48%,transparent) 49%,rgba(240,252,255,.24) 52%,transparent 62%) !important;
+  background-size:100% 100%,260% 100% !important;
+  background-position:center,150% 0 !important;
+  mix-blend-mode:screen !important;
+}
+#project-vault.lit .vault-card {
+  box-shadow:
+    9px 12px 0 rgba(0,0,0,.6),
+    16px 27px 34px rgba(0,0,0,.76),
+    0 20px 44px color-mix(in srgb,var(--card-glow) 28%,transparent),
+    0 0 34px color-mix(in srgb,var(--card-glow) 32%,transparent),
+    inset 0 3px 0 rgba(255,255,255,.42),
+    inset -9px 0 16px rgba(0,0,0,.42),
+    inset 0 -12px 20px rgba(0,0,0,.52) !important;
+}
+#project-vault.lit .vault-card::after { opacity:1 !important; animation:vaultFrontFlow 4.7s ease-in-out infinite !important; }
+#project-vault.lit .vault-card:nth-child(2)::after { animation-delay:-1.6s !important; }
+#project-vault.lit .vault-card:nth-child(3)::after { animation-delay:-3.1s !important; }
+/* Wide colored pools on the floor make each spotlight visibly spread around its object. */
+.vault-floor {
+  background-image:
+    radial-gradient(ellipse at 18% 34%,rgba(0,207,255,.34),transparent 29%),
+    radial-gradient(ellipse at 50% 32%,rgba(255,22,143,.34),transparent 30%),
+    radial-gradient(ellipse at 82% 34%,rgba(0,207,255,.32),transparent 29%),
+    linear-gradient(rgba(0,190,255,.10) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,190,255,.10) 1px,transparent 1px) !important;
+  background-size:100% 100%,100% 100%,100% 100%,35px 35px,35px 35px !important;
+}
+#project-vault.lit .vault-floor { filter:brightness(1.6) saturate(1.2) !important; }
+@media (max-width:700px) {
+  .vault-rope-control { right:1.5% !important; }
+  .vault-lamp .fixture { width:54px !important; height:38px !important; }
+  .vault-lamp .beam { width:30vw !important; height:240px !important; }
+  .vault-card:nth-child(1),
+  .vault-card:nth-child(2),
+  .vault-card:nth-child(3),
+  #project-vault.lit .vault-card:nth-child(1),
+  #project-vault.lit .vault-card:nth-child(2),
+  #project-vault.lit .vault-card:nth-child(3) {
+    width:min(76%,270px) !important; max-width:270px !important; aspect-ratio:1.65/1 !important;
+    transform:translateY(0) scale(.94) !important;
+  }
+}
+@media (prefers-reduced-motion:reduce) {
+  #project-vault.lit .vault-card::after,
+  #project-vault.lit .vault-lamp .beam { animation:none !important; }
+}
+
+</style>
+
+<canvas id="bg" aria-hidden="true"></canvas>
+<main id="main">
+  <section id="stage" aria-label="Introduction">
+    <div class="grid-floor" aria-hidden="true"></div>
+    <div class="stage-inner">
+      <canvas id="scene" aria-hidden="true"></canvas>
+      <h1 class="name" id="name"><span class="sr">Kamal Dhali</span><svg viewBox="0 0 1000 130" aria-hidden="true"><defs><linearGradient id="ng" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ffffff"/><stop offset=".45" stop-color="#a8fbff"/><stop offset="1" stop-color="#ff9cf7"/></linearGradient></defs><text class="face" x="500" y="100" text-anchor="middle" textLength="960" lengthAdjust="spacingAndGlyphs">KAMAL DHALI</text></svg></h1>
+      <p class="caption">PCB design &amp; project work</p>
+    </div>
+    <div class="scan" aria-hidden="true"></div>
+    <i class="hud tl" aria-hidden="true"></i><i class="hud tr" aria-hidden="true"></i><i class="hud bl" aria-hidden="true"></i><i class="hud br" aria-hidden="true"></i>
+    <span class="mono-tag" aria-hidden="true"><b class="dot"></b>K.D. // NIT GOA</span>
+    <button class="skip" id="skip" type="button">Skip intro &rarr;</button>
+    <button class="cue" id="cue" type="button" aria-label="Scroll to my work"><span>Scroll</span><i></i></button>
+  </section>
+
+  <section id="work" aria-labelledby="work-h">
+    <div class="work-head">
+      <div>
+        <p class="eyebrow">Kamal Dhali / NIT Goa</p>
+        <h2 id="work-h">Dive in.</h2>
+      </div>
+      <p>Pick a panel. It ripples open into the full page.</p>
+    </div>
+    <div class="panels" id="panels">
+      <button class="panel" data-key="skills" style="--glow:#b6ff3c" aria-haspopup="dialog">
+        <canvas aria-hidden="true"></canvas>
+        <span class="p-tag">Tools</span>
+        <span class="p-body"><span class="p-title">Technical Skills</span><span class="p-open">Open <span aria-hidden="true">&rarr;</span></span></span>
+      </button>
+      <button class="panel main" data-key="about" style="--glow:#00e5ff" aria-haspopup="dialog">
+        <canvas aria-hidden="true"></canvas>
+        <span class="p-tag">Who</span>
+        <span class="p-body"><span class="p-title">About Me</span><span class="p-open">Open <span aria-hidden="true">&rarr;</span></span></span>
+      </button>
+      <button class="panel" data-key="projects" style="--glow:#ff4f9a" aria-haspopup="dialog">
+        <canvas aria-hidden="true"></canvas>
+        <span class="p-tag">Next</span>
+        <span class="p-body"><span class="p-title">Projects &amp; Goals</span><span class="p-open">Open <span aria-hidden="true">&rarr;</span></span></span>
+      </button>
+    </div>
+    <div class="foot"><span>Kamal Dhali</span><span>PCB design &amp; project work</span></div>
+  </section>
+
+
+
+
+  <section id="project-vault" aria-labelledby="vault-title">
+    <div class="vault-head">
+      <div><p class="eyebrow">03 // The workshop</p><h2 id="vault-title">Built in waves.</h2></div>
+      <p class="vault-note">Pull the light on. Explore the work.</p>
+    </div>
+    <div class="vault-room" id="vault-room">
+      <div class="vault-lamps" aria-hidden="true">
+        <div class="vault-lamp"><i class="cord"></i><i class="fixture"></i><i class="bulb"></i><i class="beam"></i></div>
+        <div class="vault-lamp"><i class="cord"></i><i class="fixture"></i><i class="bulb"></i><i class="beam"></i></div>
+        <div class="vault-lamp"><i class="cord"></i><i class="fixture"></i><i class="bulb"></i><i class="beam"></i></div>
+      </div>
+      <button class="vault-rope-control" id="vault-rope" type="button" aria-label="Pull the rope to switch on the project lamps" aria-pressed="false"><span class="rope"></span><span class="pull"></span></button>
+      <div class="vault-cards">
+        <a class="vault-card" data-vault-key="pcb" href="https://github.com/dhalikamal880-stack/PCB-designing" target="_blank" rel="noopener noreferrer" aria-label="Open PCB Design GitHub repository">
+          <canvas aria-hidden="true"></canvas><span class="card-shade"></span><span class="card-copy"><span class="card-index">01 / HARDWARE</span><span class="card-title">PCB Design</span><span class="card-link">OPEN GITHUB ↗</span></span>
+        </a>
+        <a class="vault-card" data-vault-key="projects" href="https://github.com/dhalikamal880-stack/PROJECTS" target="_blank" rel="noopener noreferrer" aria-label="Open Projects GitHub repository">
+          <canvas aria-hidden="true"></canvas><span class="card-shade"></span><span class="card-copy"><span class="card-index">02 / BUILDS</span><span class="card-title">Projects</span><span class="card-link">OPEN GITHUB ↗</span></span>
+        </a>
+        <a class="vault-card" data-vault-key="simulations" href="https://github.com/dhalikamal880-stack/simulations-" target="_blank" rel="noopener noreferrer" aria-label="Open Simulations GitHub repository">
+          <canvas aria-hidden="true"></canvas><span class="card-shade"></span><span class="card-copy"><span class="card-index">03 / MODELS</span><span class="card-title">Simulations</span><span class="card-link">OPEN GITHUB ↗</span></span>
+        </a>
+      </div>
+      <div class="vault-floor" aria-hidden="true"></div>
+      <p class="vault-hint" id="vault-hint">Pull the glowing switch to reveal the project boxes</p>
+    </div>
+  </section>
+
+  <!-- Page 4: Contact links, matching the existing neon portfolio atmosphere. -->
+  <section id="contact-page" aria-labelledby="contact-title">
+    <div class="contact-inner">
+      <p class="eyebrow">04 // CONTACT</p>
+      <h2 id="contact-title">Get in Touch</h2>
+      <p class="contact-subtitle">Connect with me.</p>
+      <div class="contact-links">
+        <a class="contact-link" href="https://www.linkedin.com/in/kamal-dhali17/" target="_blank" rel="noopener noreferrer" aria-label="Open Kamal Dhali's LinkedIn profile">
+          <span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5.2 3.5a2.2 2.2 0 1 0 0 4.4 2.2 2.2 0 0 0 0-4.4ZM3.4 9.4H7v11.2H3.4zM9.2 9.4h3.4v1.5h.1a3.7 3.7 0 0 1 3.3-1.8c3.5 0 4.2 2.3 4.2 5.2v6.3h-3.6V15c0-1.3 0-3-1.9-3s-2.2 1.4-2.2 2.9v5.7H9.2z"/></svg></span>
+          <span>LinkedIn</span><span class="contact-arrow" aria-hidden="true">↗</span>
+        </a>
+        <a class="contact-link" href="https://github.com/dhalikamal880-stack" target="_blank" rel="noopener noreferrer" aria-label="Open Kamal Dhali's GitHub profile">
+          <span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 .9a11.1 11.1 0 0 0-3.5 21.6c.6.1.8-.3.8-.6v-2.1c-3.1.7-3.8-1.3-3.8-1.3-.5-1.3-1.2-1.6-1.2-1.6-1-.7.1-.7.1-.7 1.1.1 1.7 1.1 1.7 1.1 1 1.7 2.6 1.2 3.2.9.1-.7.4-1.2.7-1.5-2.5-.3-5.1-1.2-5.1-5.5 0-1.2.4-2.2 1.1-3-.1-.3-.5-1.4.1-3 0 0 .9-.3 3.1 1.1a10.8 10.8 0 0 1 5.7 0c2.2-1.4 3.1-1.1 3.1-1.1.6 1.6.2 2.7.1 3 .7.8 1.1 1.8 1.1 3 0 4.3-2.6 5.2-5.1 5.5.4.3.8 1 .8 2v3.2c0 .3.2.7.8.6A11.1 11.1 0 0 0 12 .9Z"/></svg></span>
+          <span>GitHub</span><span class="contact-arrow" aria-hidden="true">↗</span>
+        </a>
+        <a class="contact-link" href="mailto:dhalikamal880@gmail.com" aria-label="Send email to dhalikamal880@gmail.com">
+          <span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 5.5h18A1.5 1.5 0 0 1 22.5 7v10a1.5 1.5 0 0 1-1.5 1.5H3A1.5 1.5 0 0 1 1.5 17V7A1.5 1.5 0 0 1 3 5.5Zm9 7.1 8.1-5.2H3.9L12 12.6Zm0 2.1L3.5 9.1V17h17V9.1L12 14.7Z"/></svg></span>
+          <span>Gmail</span><span class="contact-arrow" aria-hidden="true">↗</span>
+        </a>
+      </div>
+      <div class="contact-footer"><span>KAMAL DHALI</span><span>PCB DESIGN · ELECTRONICS · ENGINEERING</span></div>
+    </div>
+  </section>
+
+</main>
+
+<div class="page" id="page" role="dialog" aria-modal="true" aria-labelledby="page-h" hidden>
+  <canvas id="page-wave" aria-hidden="true"></canvas>
+  <div class="veil"></div>
+  <button class="back" id="back" type="button"><span aria-hidden="true">&larr;</span> Back</button>
+  <div class="scroll" id="page-scroll">
+    <div class="inner" id="page-inner"></div>
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var root = document.documentElement;
+  var stage = document.getElementById('stage');
+  var main = document.getElementById('main');
+  var t0 = performance.now();
+  var introVisible = true;
+
+  /* ---------- Scroll-linked curtain transition ---------- */
+  var ticking = false;
+  function onScroll() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function () {
+      ticking = false;
+      var p = Math.min(1, Math.max(0, window.scrollY / Math.max(1, stage.offsetHeight)));
+      stage.style.setProperty('--p', p.toFixed(3));
+      introVisible = p < 0.98;
+    });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  /* =====================================================
+     NEON WAVE (WebGL fragment shader, used by panels and the opened page)
+     ===================================================== */
+  var VS = 'attribute vec2 p; void main(){ gl_Position = vec4(p, 0.0, 1.0); }';
+  var FS = [
+    '#ifdef GL_FRAGMENT_PRECISION_HIGH', 'precision highp float;', '#else', 'precision mediump float;', '#endif',
+    'uniform vec2 uRes; uniform float uTime; uniform vec3 uA; uniform vec3 uB; uniform vec3 uC;',
+    'uniform vec2 uClick; uniform float uClickT; uniform vec2 uMouse; uniform float uMouseAmt; uniform float uHover; uniform float uDim;',
+    'void main(){',
+    '  vec2 uv = gl_FragCoord.xy / uRes;',
+    '  float asp = uRes.x / uRes.y;',
+    '  vec2 p = vec2(uv.x * asp, uv.y);',
+    '  float t = uTime;',
+    '  float dm = distance(p, vec2(uMouse.x * asp, uMouse.y));',
+    '  float dc = distance(p, vec2(uClick.x * asp, uClick.y));',
+    '  float ring = 0.0;',
+    '  if (uClickT >= 0.0) {',
+    '    float r = uClickT * 0.9;',
+    '    float x = (dc - r) * 7.0;',
+    '    ring = exp(-x * x) * exp(-uClickT * 0.9);',
+    '  }',
+    '  float f = uv.y * 5.0;',
+    '  f += 0.55 * sin(p.x * 3.2 + t * 0.7 + sin(p.y * 2.5 - t * 0.5) * 1.3);',
+    '  f += 0.30 * sin(p.x * 6.1 - t * 0.9 + p.y * 2.0);',
+    '  f += uMouseAmt * 0.45 * exp(-dm * dm * 14.0) * sin(dm * 30.0 - t * 5.0);',
+    '  f += ring * 1.6 * sin(dc * 45.0 - uClickT * 9.0);',
+    '  f -= t * 0.10;',
+    '  float d = abs(fract(f) - 0.5);',
+    '  float core = 1.0 - smoothstep(0.0, 0.05 + 0.02 * uHover, d);',
+    '  float glow = 0.02 / (d + 0.02);',
+    '  float neon = core + glow * 0.28;',
+    '  vec3 col = mix(uA, uB, smoothstep(0.0, 1.0, uv.y + 0.2 * sin(f * 0.6)));',
+    '  col = mix(col, uC, 0.45 * (0.5 + 0.5 * sin(f * 0.4 + t * 0.3 + uv.x * 2.0)));',
+    '  float body = 0.5 + 0.5 * sin(f * 6.2831853);',
+    '  vec3 c = vec3(0.02, 0.025, 0.04) + col * 0.07 * body;',
+    '  c += col * neon * (0.9 + 0.5 * uHover) + uC * ring * 0.5;',
+    '  float vig = 1.0 - smoothstep(0.15, 1.05, distance(uv, vec2(0.5)));',
+    '  c *= mix(0.5, 1.0, vig);',
+    '  gl_FragColor = vec4(c * uDim, 1.0);',
+    '}'
+  ].join('\n');
+
+  function hex(h) { return [parseInt(h.slice(1, 3), 16) / 255, parseInt(h.slice(3, 5), 16) / 255, parseInt(h.slice(5, 7), 16) / 255]; }
+
+  function Wave(canvas, pal, dim) {
+    var gl = null;
+    try { gl = canvas.getContext('webgl', { antialias: false, alpha: false, powerPreference: 'low-power' }); } catch (e) {}
+    if (!gl) return null;
+    function sh(type, src) { var s = gl.createShader(type); gl.shaderSource(s, src); gl.compileShader(s); return gl.getShaderParameter(s, gl.COMPILE_STATUS) ? s : null; }
+    var vs = sh(gl.VERTEX_SHADER, VS), fs = sh(gl.FRAGMENT_SHADER, FS);
+    if (!vs || !fs) return null;
+    var prog = gl.createProgram();
+    gl.attachShader(prog, vs); gl.attachShader(prog, fs); gl.linkProgram(prog);
+    if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) return null;
+    gl.useProgram(prog);
+    var buf = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
+    var loc = gl.getAttribLocation(prog, 'p');
+    gl.enableVertexAttribArray(loc);
+    gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+    var U = {};
+    ['uRes', 'uTime', 'uA', 'uB', 'uC', 'uClick', 'uClickT', 'uMouse', 'uMouseAmt', 'uHover', 'uDim'].forEach(function (n) { U[n] = gl.getUniformLocation(prog, n); });
+
+    var w = {
+      canvas: canvas, active: false,
+      hover: 0, hoverTarget: 0, mouse: [0.5, 0.5], mouseAmt: 0, mouseTarget: 0,
+      click: [0.5, 0.5], clickStart: -1, pal: pal.map(hex), dim: dim
+    };
+    w.setPal = function (p) { w.pal = p.map(hex); };
+    w.resize = function () {
+      var dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+      var cw = Math.max(2, Math.round(canvas.clientWidth * dpr)), ch = Math.max(2, Math.round(canvas.clientHeight * dpr));
+      if (canvas.width !== cw || canvas.height !== ch) { canvas.width = cw; canvas.height = ch; }
+      gl.viewport(0, 0, canvas.width, canvas.height);
+    };
+    w.ripple = function (u, v) { w.click = [u, v]; w.clickStart = performance.now(); };
+    w.render = function (now) {
+      w.hover += (w.hoverTarget - w.hover) * 0.08;
+      w.mouseAmt += (w.mouseTarget - w.mouseAmt) * 0.08;
+      var ct = -1;
+      if (w.clickStart > 0) { ct = (now - w.clickStart) / 1000; if (ct > 3.5) { ct = -1; w.clickStart = -1; } }
+      gl.uniform2f(U.uRes, canvas.width, canvas.height);
+      gl.uniform1f(U.uTime, reduce ? 3.0 : (now - t0) / 1000);
+      gl.uniform3fv(U.uA, w.pal[0]); gl.uniform3fv(U.uB, w.pal[1]); gl.uniform3fv(U.uC, w.pal[2]);
+      gl.uniform2fv(U.uClick, w.click); gl.uniform1f(U.uClickT, ct);
+      gl.uniform2fv(U.uMouse, w.mouse); gl.uniform1f(U.uMouseAmt, w.mouseAmt);
+      gl.uniform1f(U.uHover, w.hover); gl.uniform1f(U.uDim, w.dim);
+      gl.drawArrays(gl.TRIANGLES, 0, 3);
+    };
+    w.resize();
+    return w;
+  }
+
+  /* ---------- Pages ---------- */
+  var PAGES = {
+    about: {
+      accent: '#00e5ff', pal: ['#00e5ff', '#6a5cff', '#ff3df2'], eyebrow: 'Who I am', title: 'About Me',
+      html: '<p class="lead">I am an electronics enthusiast at NIT Goa, passionate about PCB design, electronics, and developing innovative engineering projects. I am particularly fascinated by drone technology and enjoy exploring new ideas and turning concepts into practical hardware solutions.</p>' +
+            '<ul class="chips"><li>NIT Goa</li><li>PCB design</li><li>Electronics</li><li>Drone technology</li></ul>'
+    },
+    skills: {
+      accent: '#b6ff3c', pal: ['#b6ff3c', '#00ffa3', '#00e5ff'], eyebrow: 'What I use', title: 'Technical Skills',
+      html: '<p class="lead">I use KiCad for PCB design, LTspice for circuit simulation, MATLAB and Simulink for engineering analysis and modelling, and Arduino IDE for programming and developing electronics projects.</p>' +
+            '<ul class="tools">' +
+            '<li><b>KiCad</b><span>PCB design</span></li>' +
+            '<li><b>LTspice</b><span>Circuit simulation</span></li>' +
+            '<li><b>MATLAB &amp; Simulink</b><span>Engineering analysis and modelling</span></li>' +
+            '<li><b>Arduino IDE</b><span>Programming and developing electronics projects</span></li>' +
+            '</ul>'
+    },
+    projects: {
+      accent: '#ff4f9a', pal: ['#ff4f9a', '#ff8a1f', '#ffd23c'], eyebrow: 'Where I am heading', title: 'Projects & Goals',
+      html: '<p class="lead">I enjoy developing new projects and expanding my knowledge of electronics, embedded systems, and drone technology. I am particularly interested in power electronics and the design of DC–DC converters, such as buck and boost converters. My goal is to develop efficient, reliable hardware solutions while continuously improving my practical engineering and design skills.</p>' +
+            '<ul class="chips"><li>Embedded systems</li><li>Drone technology</li><li>Power electronics</li><li>DC–DC converters</li><li>Buck</li><li>Boost</li></ul>' +
+            '<div class="slot github-links"><b>GitHub repositories</b><span><a href="https://github.com/dhalikamal880-stack/PCB-designing" target="_blank" rel="noopener noreferrer">PCB Design ↗</a> &nbsp;·&nbsp; <a href="https://github.com/dhalikamal880-stack/PROJECTS" target="_blank" rel="noopener noreferrer">Projects ↗</a> &nbsp;·&nbsp; <a href="https://github.com/dhalikamal880-stack/simulations-" target="_blank" rel="noopener noreferrer">Simulations ↗</a></span></div>'
+    }
+  };
+
+  /* ---------- Panels ---------- */
+  var PAL = { about: PAGES.about.pal, skills: PAGES.skills.pal, projects: PAGES.projects.pal };
+  var panels = [].slice.call(document.querySelectorAll('.panel'));
+  var items = panels.map(function (el) {
+    var key = el.getAttribute('data-key');
+    var wave = Wave(el.querySelector('canvas'), PAL[key], 1.0);
+    if (!wave) el.classList.add('nogl');
+    var it = { el: el, key: key, wave: wave, visible: false };
+    el.addEventListener('pointerenter', function () { if (wave) wave.hoverTarget = 1; });
+    el.addEventListener('pointerleave', function () { if (wave) { wave.hoverTarget = 0; wave.mouseTarget = 0; } });
+    el.addEventListener('focus', function () { if (wave) wave.hoverTarget = 1; });
+    el.addEventListener('blur', function () { if (wave) wave.hoverTarget = 0; });
+    el.addEventListener('pointermove', function (e) {
+      if (!wave) return;
+      var r = el.getBoundingClientRect();
+      wave.mouse = [(e.clientX - r.left) / r.width, 1 - (e.clientY - r.top) / r.height];
+      wave.mouseTarget = 1;
+    });
+    el.addEventListener('click', function (e) {
+      var r = el.getBoundingClientRect();
+      var cx = e.detail === 0 ? r.left + r.width / 2 : e.clientX;
+      var cy = e.detail === 0 ? r.top + r.height / 2 : e.clientY;
+      if (wave) wave.ripple((cx - r.left) / r.width, 1 - (cy - r.top) / r.height);
+      openPage(it, cx, cy);
+    });
+    return it;
+  });
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { items.forEach(function (it) { if (it.el === e.target) it.visible = e.isIntersecting; }); });
+    }, { rootMargin: '80px' });
+    items.forEach(function (it) { io.observe(it.el); });
+  } else { items.forEach(function (it) { it.visible = true; }); }
+
+  /* ---------- Page 3: the 3D neon-wave project boxes ---------- */
+  var vault = document.getElementById('project-vault');
+  var vaultRoom = document.getElementById('vault-room');
+  var vaultRope = document.getElementById('vault-rope');
+  var vaultHint = document.getElementById('vault-hint');
+  var vaultLit = false;
+  var vaultVisible = false;
+  var vaultCards = [].slice.call(document.querySelectorAll('.vault-card'));
+  var vaultPalettes = {
+    pcb: ['#00cfff', '#1578ff', '#ff4f9a'],
+    projects: ['#ff4f9a', '#8c43ff', '#00cfff'],
+    simulations: ['#00cfff', '#ff4f9a', '#7a5cff']
+  };
+  var vaultItems = vaultCards.map(function (el) {
+    var wave = Wave(el.querySelector('canvas'), vaultPalettes[el.getAttribute('data-vault-key')], 0.9);
+    if (!wave) el.classList.add('nogl');
+    var item = { el: el, wave: wave, visible: false };
+    el.addEventListener('pointerenter', function () { if (wave) wave.hoverTarget = 1; });
+    el.addEventListener('pointerleave', function () { if (wave) { wave.hoverTarget = 0; wave.mouseTarget = 0; } });
+    el.addEventListener('focus', function () { if (wave) wave.hoverTarget = 1; });
+    el.addEventListener('blur', function () { if (wave) wave.hoverTarget = 0; });
+    el.addEventListener('pointermove', function (e) {
+      if (!wave) return;
+      var r = el.getBoundingClientRect();
+      wave.mouse = [(e.clientX - r.left) / r.width, 1 - (e.clientY - r.top) / r.height];
+      wave.mouseTarget = 1;
+    });
+    el.addEventListener('click', function (e) {
+      if (!vaultLit) { e.preventDefault(); toggleVault(true); return; }
+      if (wave) { var r = el.getBoundingClientRect(); wave.ripple((e.clientX-r.left)/r.width, 1-(e.clientY-r.top)/r.height); }
+    });
+    return item;
+  });
+  function toggleVault(forceOn) {
+    vaultLit = typeof forceOn === 'boolean' ? forceOn : !vaultLit;
+    vault.classList.toggle('lit', vaultLit);
+    vaultRope.setAttribute('aria-pressed', String(vaultLit));
+    vaultRope.setAttribute('aria-label', vaultLit ? 'Pull the rope to switch off the project lamps' : 'Pull the rope to switch on the project lamps');
+    vaultHint.textContent = vaultLit ? 'Choose a wave box to open its GitHub repository' : 'Pull the glowing switch to reveal the project boxes';
+    vaultItems.forEach(function (item) {
+      item.visible = vaultVisible && vaultLit;
+      if (item.wave) { item.wave.active = vaultLit; item.wave.resize(); if (vaultLit) item.wave.ripple(.5,.5); }
+    });
+  }
+  vaultRope.addEventListener('click', function () { toggleVault(); });
+  var ropeStartY = null;
+  vaultRope.addEventListener('pointerdown', function (e) { ropeStartY = e.clientY; });
+  vaultRope.addEventListener('pointerup', function (e) {
+    if (ropeStartY !== null && Math.abs(e.clientY - ropeStartY) > 18) toggleVault(true);
+    ropeStartY = null;
+  });
+  if ('IntersectionObserver' in window) {
+    var vaultObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.target === vault) {
+          vaultVisible = entry.isIntersecting;
+          vaultItems.forEach(function (item) { item.visible = vaultVisible && vaultLit; });
+          if (entry.isIntersecting) vaultItems.forEach(function (item) { if (item.wave) item.wave.resize(); });
+        }
+      });
+    }, { rootMargin: '100px' });
+    vaultObserver.observe(vault);
+  } else { vaultItems.forEach(function (item) { item.visible = true; }); }
+  window.addEventListener('resize', function () { vaultItems.forEach(function (item) { if (item.wave) item.wave.resize(); }); });
+
+  /* panels rise in as the curtain opens */
+  if ('IntersectionObserver' in window && !reduce) {
+    panels.forEach(function (p) { p.classList.add('pre'); });
+    var pio = new IntersectionObserver(function (es) {
+      if (es.some(function (e) { return e.isIntersecting; })) {
+        panels.forEach(function (p) { p.classList.remove('pre'); });
+        pio.disconnect();
+      }
+    }, { threshold: 0.12 });
+    panels.forEach(function (p) { pio.observe(p); });
+  }
+
+  /* on phones the strip scrolls sideways: start with About Me centred */
+  var strip = document.getElementById('panels');
+  var mainPanel = strip.querySelector('.panel.main');
+  var lastW = 0;
+  function centerMain() {
+    if (window.innerWidth === lastW) return;
+    lastW = window.innerWidth;
+    if (window.innerWidth > 960) { strip.scrollLeft = 0; return; }
+    strip.scrollLeft = mainPanel.offsetLeft - (strip.clientWidth - mainPanel.offsetWidth) / 2;
+  }
+  centerMain();
+  window.addEventListener('load', function () { lastW = 0; centerMain(); });
+  window.addEventListener('resize', function () { centerMain(); items.forEach(function (it) { if (it.wave) it.wave.resize(); }); if (pageWave) pageWave.resize(); });
+
+  /* ---------- Opened page (ripple reveal) ---------- */
+  var page = document.getElementById('page');
+  var pageInner = document.getElementById('page-inner');
+  var pageScroll = document.getElementById('page-scroll');
+  var backBtn = document.getElementById('back');
+  var pageWave = Wave(document.getElementById('page-wave'), PAL.about, 0.8);
+  var current = null, openCx = 0, openCy = 0, closing = null, settle = null, readyT = null;
+
+  function openPage(it, cx, cy) {
+    var d = PAGES[it.key];
+    current = it; openCx = cx; openCy = cy;
+    clearTimeout(closing); clearTimeout(settle); clearTimeout(readyT);
+    pageInner.innerHTML = '<p class="eyebrow">' + d.eyebrow + '</p><h2 id="page-h">' + d.title.replace('&', '&amp;') + '</h2>' + d.html;
+    page.style.setProperty('--accent', d.accent);
+    pageScroll.scrollTop = 0;
+    page.classList.remove('ready');
+    page.hidden = false;
+    main.inert = true;
+    root.classList.add('locked');
+    if (pageWave) { pageWave.setPal(d.pal); pageWave.resize(); pageWave.ripple(cx / innerWidth, 1 - cy / innerHeight); pageWave.active = true; }
+    var R = Math.hypot(Math.max(cx, innerWidth - cx), Math.max(cy, innerHeight - cy)) + 40;
+    if (reduce) {
+      page.style.transition = 'none'; page.style.clipPath = 'none'; page.classList.add('ready'); backBtn.focus(); return;
+    }
+    page.style.transition = 'none';
+    page.style.clipPath = 'circle(0px at ' + cx + 'px ' + cy + 'px)';
+    void page.offsetWidth;
+    page.style.transition = 'clip-path 1000ms cubic-bezier(.7,0,.2,1)';
+    page.style.clipPath = 'circle(' + R + 'px at ' + cx + 'px ' + cy + 'px)';
+    readyT = setTimeout(function () { page.classList.add('ready'); }, 520);
+    settle = setTimeout(function () { page.style.transition = 'none'; page.style.clipPath = 'none'; backBtn.focus({ preventScroll: true }); }, 1050);
+  }
+
+  function closePage() {
+    if (!current || page.hidden) return;
+    var it = current;
+    clearTimeout(settle); clearTimeout(readyT);
+    page.classList.remove('ready');
+    var r = it.el.getBoundingClientRect();
+    var tx = r.left + r.width / 2, ty = r.top + r.height / 2;
+    var R = Math.hypot(Math.max(openCx, innerWidth - openCx), Math.max(openCy, innerHeight - openCy)) + 40;
+    var done = function () {
+      page.hidden = true; main.inert = false; root.classList.remove('locked');
+      if (pageWave) pageWave.active = false;
+      page.style.clipPath = 'circle(0px at 50% 50%)';
+      current = null;
+      it.el.focus({ preventScroll: true });
+    };
+    if (reduce) { done(); return; }
+    page.style.transition = 'none';
+    page.style.clipPath = 'circle(' + R + 'px at ' + openCx + 'px ' + openCy + 'px)';
+    void page.offsetWidth;
+    page.style.transition = 'clip-path 780ms cubic-bezier(.7,0,.25,1)';
+    page.style.clipPath = 'circle(0px at ' + tx + 'px ' + ty + 'px)';
+    if (it.wave) it.wave.ripple(0.5, 0.5);
+    closing = setTimeout(done, 800);
+  }
+  backBtn.addEventListener('click', closePage);
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closePage(); });
+
+  /* ---------- Render loop for waves ---------- */
+  function waveLoop(now) {
+    requestAnimationFrame(waveLoop);
+    if (!page.hidden && pageWave && pageWave.active) { pageWave.render(now); return; }
+    for (var i = 0; i < items.length; i++) { if (items[i].visible && items[i].wave) items[i].wave.render(now); }
+    for (var j = 0; j < vaultItems.length; j++) { if (vaultItems[j].visible && vaultLit && vaultItems[j].wave) vaultItems[j].wave.render(now); }
+  }
+  requestAnimationFrame(waveLoop);
+
+  /* =====================================================
+     INTRO: neon wires fly in and tangle, the scene blurs, the neon name lights up
+     ===================================================== */
+  var skip = document.getElementById('skip');
+  var cue = document.getElementById('cue');
+  var nameEl = document.getElementById('name');
+  var sceneEl = document.getElementById('scene');
+  var unlocked = false;
+
+
+  function unlock() { root.classList.remove('locked'); }
+  function toWork() { document.getElementById('work').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' }); }
+  cue.addEventListener('click', toWork);
+
+  function showAll() {
+    nameEl.classList.add('on1', 'on2');
+    stage.classList.add('show-cap', 'show-cue');
+  }
+
+  /* ---------- Background: soft blurred water with glowing ripples at random times and places ---------- */
+  (function () {
+    var cv = document.getElementById('bg');
+    var gl = null;
+    try { gl = cv.getContext('webgl', { antialias: false, alpha: false, powerPreference: 'low-power' }); } catch (e) {}
+    if (!gl) return;
+    var vsrc = 'attribute vec2 p; void main(){ gl_Position = vec4(p, 0.0, 1.0); }';
+    var fsrc = [
+      '#ifdef GL_FRAGMENT_PRECISION_HIGH', 'precision highp float;', '#else', 'precision mediump float;', '#endif',
+      'uniform vec2 uRes; uniform float uTime; uniform vec3 uR[6];',
+      'void main(){',
+      '  vec2 uv = gl_FragCoord.xy / uRes;',
+      '  float asp = uRes.x / uRes.y;',
+      '  vec2 p = vec2(uv.x * asp, uv.y);',
+      '  float t = uTime;',
+      '  float rp = 0.0; float fl = 0.0;',
+      '  for (int i = 0; i < 6; i++) {',
+      '    vec3 r = uR[i];',
+      '    if (r.z < 0.0) continue;',
+      '    float age = t - r.z;',
+      '    if (age > 5.0) continue;',
+      '    float d = distance(p, vec2(r.x * asp, r.y));',
+      '    float x = d - age * 0.26;',
+      '    float fade = exp(-age * 0.65) * smoothstep(0.0, 0.35, age);',
+      '    rp += exp(-x * x * 40.0) * sin(d * 30.0 - age * 6.0) * fade;',
+      '    fl += exp(-d * d * 9.0) * exp(-age * 2.2);',
+      '  }',
+      '  float f = uv.y * 2.4 + 0.5 * sin(p.x * 1.6 + t * 0.25 + sin(p.y * 1.8 - t * 0.2) * 1.2) + 0.2 * sin(p.x * 3.0 - t * 0.3);',
+      '  f += rp * 0.9 - t * 0.04;',
+      '  float d2 = abs(fract(f) - 0.5);',
+      '  float core = 1.0 - smoothstep(0.0, 0.022, d2);',
+      '  float glow = 0.03 / (d2 + 0.05);',
+      '  float neon = core * 0.55 + glow * 0.22;',
+      '  vec3 cA = vec3(0.0, 0.9, 1.0); vec3 cB = vec3(0.42, 0.36, 1.0); vec3 cC = vec3(1.0, 0.24, 0.95);',
+      '  vec3 col = mix(cA, cC, smoothstep(0.1, 0.9, uv.x + 0.15 * sin(f)));',
+      '  vec3 c = vec3(0.012, 0.010, 0.032);',
+      '  c += cC * 0.11 * exp(-dot(uv - vec2(0.85, 0.15), uv - vec2(0.85, 0.15)) * 4.5);',
+      '  c += cA * 0.09 * exp(-dot(uv - vec2(0.12, 0.85), uv - vec2(0.12, 0.85)) * 4.5);',
+      '  c += cB * 0.06 * exp(-dot(uv - vec2(0.5, 0.5), uv - vec2(0.5, 0.5)) * 3.0);',
+      '  c += col * neon * 0.32 + col * fl * 0.2;',
+      '  vec2 q = uv - vec2(0.5, 0.55);',
+      '  c *= 1.0 - 0.55 * exp(-dot(q, q) * 7.0);',
+      '  float vig = 1.0 - smoothstep(0.25, 1.1, distance(uv, vec2(0.5)));',
+      '  c *= mix(0.5, 1.0, vig);',
+      '  gl_FragColor = vec4(c, 1.0);',
+      '}'
+    ].join('\n');
+    function sh(type, src) { var o = gl.createShader(type); gl.shaderSource(o, src); gl.compileShader(o); return gl.getShaderParameter(o, gl.COMPILE_STATUS) ? o : null; }
+    var vs = sh(gl.VERTEX_SHADER, vsrc), fs = sh(gl.FRAGMENT_SHADER, fsrc);
+    if (!vs || !fs) return;
+    var prog = gl.createProgram();
+    gl.attachShader(prog, vs); gl.attachShader(prog, fs); gl.linkProgram(prog);
+    if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) return;
+    gl.useProgram(prog);
+    var buf = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
+    var loc = gl.getAttribLocation(prog, 'p');
+    gl.enableVertexAttribArray(loc);
+    gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+    var uRes = gl.getUniformLocation(prog, 'uRes'), uTime = gl.getUniformLocation(prog, 'uTime'), uR = gl.getUniformLocation(prog, 'uR');
+
+    var rip = new Float32Array(18);
+    for (var i = 0; i < 6; i++) rip[i * 3 + 2] = -1;
+    var slot = 0, nextAt = 0.4;
+    function resize() {
+      var dpr = Math.min(window.devicePixelRatio || 1, 1) * 0.7;
+      var w = Math.max(2, Math.round(cv.clientWidth * dpr)), h = Math.max(2, Math.round(cv.clientHeight * dpr));
+      if (cv.width !== w || cv.height !== h) { cv.width = w; cv.height = h; }
+      gl.viewport(0, 0, cv.width, cv.height);
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    function draw(now) {
+      requestAnimationFrame(draw);
+      if (!page.hidden) return;
+      var t = reduce ? 4.0 : (now - t0) / 1000;
+      if (!reduce && t > nextAt) {
+        rip[slot * 3] = 0.08 + Math.random() * 0.84;
+        rip[slot * 3 + 1] = 0.1 + Math.random() * 0.8;
+        rip[slot * 3 + 2] = t;
+        slot = (slot + 1) % 6;
+        nextAt = t + 0.9 + Math.random() * 1.9;
+      }
+      gl.uniform2f(uRes, cv.width, cv.height);
+      gl.uniform1f(uTime, t);
+      gl.uniform3fv(uR, rip);
+      gl.drawArrays(gl.TRIANGLES, 0, 3);
+    }
+    requestAnimationFrame(draw);
+  })();
+
+  /* =====================================================
+     INTRO: a neon particle swarm spirals in from the edges and assembles into the name,
+     a light bar sweeps across it, then it settles. Particles scatter away from the cursor.
+     ===================================================== */
+  var ctx = sceneEl.getContext('2d');
+  if (!reduce) root.classList.add('locked');
+  var T_UNLOCK = 4.8, TEXT = 'KAMAL DHALI', FONT = '"Unbounded", "Arial Black", system-ui, sans-serif';
+  function ease(x) { x = Math.min(1, Math.max(0, x)); return x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; }
+
+  var W = 0, H = 0, DPR = 1, parts = [], fontPx = 40, started = false, tStart = 0, jump = 0;
+  var mpx = -9999, mpy = -9999;
+  var C0 = [0, 229, 255], C1 = [255, 61, 242];
+  function colAt(k) { return 'rgb(' + Math.round(C0[0] + (C1[0] - C0[0]) * k) + ',' + Math.round(C0[1] + (C1[1] - C0[1]) * k) + ',' + Math.round(C0[2] + (C1[2] - C0[2]) * k) + ')'; }
+
+  function build() {
+    DPR = Math.min(window.devicePixelRatio || 1, 2);
+    W = stage.clientWidth; H = stage.clientHeight;
+    sceneEl.width = Math.round(W * DPR); sceneEl.height = Math.round(H * DPR);
+    var cy = H * 0.45;
+    var targetW = Math.min(W * 0.9, 1080) * 0.96;
+    var m = document.createElement('canvas'); m.width = 2; m.height = 2;
+    var mc = m.getContext('2d');
+    mc.font = '700 100px ' + FONT;
+    fontPx = 100 * targetW / mc.measureText(TEXT).width;
+
+    var y0 = Math.max(0, Math.floor(cy - fontPx)), hh = Math.min(H - y0, Math.ceil(fontPx * 2));
+    var off = document.createElement('canvas'); off.width = Math.max(1, Math.round(W)); off.height = Math.max(1, hh);
+    var oc = off.getContext('2d');
+    oc.font = '700 ' + fontPx + 'px ' + FONT;
+    oc.textAlign = 'center'; oc.textBaseline = 'middle'; oc.fillStyle = '#fff';
+    oc.fillText(TEXT, off.width / 2, cy - y0);
+    var data = oc.getImageData(0, 0, off.width, off.height).data;
+
+    var step = W < 600 ? 2 : 3, pts;
+    for (var tries = 0; tries < 4; tries++) {
+      pts = [];
+      for (var y = 0; y < off.height; y += step) {
+        for (var x = 0; x < off.width; x += step) {
+          if (data[(y * off.width + x) * 4 + 3] > 128) pts.push([x + step / 2, y + y0 + step / 2]);
+        }
+      }
+      if (pts.length <= 5200) break;
+      step++;
+    }
+    var left = W / 2 - targetW / 2, R0 = Math.hypot(W, H) * 0.55;
+    parts = pts.map(function (p) {
+      var k = Math.min(1, Math.max(0, (p[0] - left) / targetW));
+      var a = Math.random() * 6.2832, R = R0 * (0.55 + Math.random() * 0.45);
+      return {
+        tx: p[0], ty: p[1], k: k,
+        sx: W / 2 + Math.cos(a) * R, sy: cy + Math.sin(a) * R,
+        delay: k * 1.3 + Math.random() * 0.3, dur: 1.6 + Math.random() * 0.6,
+        swirl: 2.2 + Math.random() * 1.6,
+        ox: 0, oy: 0, vx: 0, vy: 0, ph: Math.random() * 6.28,
+        col: colAt(k), sz: step * 0.62
+      };
+    });
+  }
+
+  window.addEventListener('resize', function () { if (started) build(); });
+  window.addEventListener('pointermove', function (e) {
+    var r = stage.getBoundingClientRect();
+    mpx = e.clientX - r.left; mpy = e.clientY - r.top;
+  });
+  window.addEventListener('pointerleave', function () { mpx = mpy = -9999; });
+
+  skip.addEventListener('click', function () { jump = 100; if (!unlocked) { unlocked = true; unlock(); } showAll(); toWork(); });
+
+  function begin() { if (started) return; started = true; build(); tStart = performance.now(); }
+  if (document.fonts && document.fonts.load) {
+    Promise.race([document.fonts.load('700 100px Unbounded', TEXT), new Promise(function (r) { setTimeout(r, 1800); })]).then(begin, begin);
+  } else { begin(); }
+
+  function frame(now) {
+    requestAnimationFrame(frame);
+    if (!introVisible || !started) return;
+    var t = reduce ? 99 : (now - tStart) / 1000 + jump;
+    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    if (t > 3.9) { ctx.globalCompositeOperation = 'source-over'; ctx.clearRect(0, 0, W, H); }
+    else { ctx.globalCompositeOperation = 'destination-out'; ctx.fillStyle = 'rgba(0,0,0,.3)'; ctx.fillRect(0, 0, W, H); }
+    ctx.globalCompositeOperation = 'source-over';
+
+    /* solid name fades in under the particles once they have landed */
+    if (t > 3.2) {
+      var ta = ease((t - 3.2) / 1.4);
+      var tw = Math.min(W * 0.9, 1080) * 0.96;
+      var g = ctx.createLinearGradient(W / 2 - tw / 2, 0, W / 2 + tw / 2, 0);
+      g.addColorStop(0, '#ffffff'); g.addColorStop(.45, '#a8fbff'); g.addColorStop(1, '#ff9cf7');
+      ctx.globalAlpha = ta * 0.9; ctx.fillStyle = g;
+      ctx.font = '700 ' + fontPx + 'px ' + FONT; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      ctx.fillText(TEXT, W / 2, H * 0.45);
+    }
+
+    ctx.globalCompositeOperation = 'lighter';
+    var bx = (t - 3.3) / 1.3 * (W * 1.2) - W * 0.1, bw = W * 0.06, sweeping = t > 3.3 && t < 4.8;
+    var RM = 110;
+    for (var i = 0; i < parts.length; i++) {
+      var p = parts[i];
+      var pr = ease((t - p.delay) / p.dur), r = 1 - pr;
+      var dx = (p.sx - p.tx), dy = (p.sy - p.ty), an = r * p.swirl, ca = Math.cos(an), sa = Math.sin(an);
+      var x = p.tx + (dx * ca - dy * sa) * r, y = p.ty + (dx * sa + dy * ca) * r;
+      if (pr >= 1) {
+        var mx2 = x + p.ox - mpx, my2 = y + p.oy - mpy, d2 = mx2 * mx2 + my2 * my2;
+        if (d2 < RM * RM && d2 > 0.01) {
+          var d = Math.sqrt(d2), f = (1 - d / RM); f *= f * 3.2;
+          p.vx += mx2 / d * f; p.vy += my2 / d * f;
+        }
+        p.vx += -p.ox * 0.06; p.vy += -p.oy * 0.06;
+        p.vx *= 0.88; p.vy *= 0.88;
+        p.ox += p.vx; p.oy += p.vy;
+        x += p.ox; y += p.oy;
+      }
+      var boost = 0;
+      if (sweeping) { var q = (x - bx) / bw; boost = Math.exp(-q * q); }
+      var tw2 = 0.5 + 0.5 * Math.sin(t * 3 + p.ph);
+      var al = pr < 1 ? 0.55 + 0.4 * pr : 0.5 + 0.18 * tw2 + boost * 0.5;
+      var sz = p.sz * (pr < 1 ? 0.9 + 0.6 * r : 1) + boost * 1.4;
+      ctx.globalAlpha = Math.min(1, al);
+      ctx.fillStyle = boost > 0.35 ? '#ffffff' : p.col;
+      ctx.fillRect(x - sz / 2, y - sz / 2, sz, sz);
+    }
+    ctx.globalAlpha = 1; ctx.globalCompositeOperation = 'source-over';
+
+    if (t > 3.8) stage.classList.add('show-cap');
+    if (t > 4.4) stage.classList.add('show-cue');
+    if (!unlocked && t > T_UNLOCK) { unlocked = true; unlock(); }
+  }
+  if (reduce) { unlocked = true; unlock(); showAll(); }
+  requestAnimationFrame(frame);
+})();
+</script>
+
+
+
+
+
+<style>
+/* Page 3 lighting: keep the lamps softly illuminated, capped at 20%.
+   No pulsing/fading up to full brightness. */
+#project-vault.lit .vault-lamp .beam {
+  opacity: 0.2 !important;
+  animation: none !important;
+  filter: blur(7px);
+}
+#project-vault.lit .vault-lamp .bulb {
+  opacity: 0.2 !important;
+  box-shadow: 0 0 4px rgba(190,245,255,.2) !important;
+}
+#project-vault.lit .vault-lamp:nth-child(2) .bulb,
+#project-vault.lit .vault-lamp:nth-child(3) .bulb {
+  box-shadow: 0 0 4px rgba(255,156,201,.2) !important;
+}
+#project-vault.lit .vault-floor {
+  filter: brightness(1.05) saturate(1.02) !important;
+}
+#project-vault.lit .vault-card {
+  box-shadow:
+    8px 12px 0 rgba(0,0,0,.5),
+    14px 22px 28px rgba(0,0,0,.64),
+    0 18px 36px color-mix(in srgb,var(--card-glow) 4%,transparent),
+    0 0 12px color-mix(in srgb,var(--card-glow) 5%,transparent),
+    inset 0 1px 0 rgba(255,255,255,.3),
+    inset -8px 0 14px rgba(0,0,0,.36),
+    inset 0 -9px 15px rgba(0,0,0,.45) !important;
+}
+#project-vault.lit .vault-card::after {
+  opacity: 0.2 !important;
+  animation: none !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  #project-vault.lit .vault-lamp .beam,
+  #project-vault.lit .vault-card::after { animation: none !important; }
+}
+</style>
+
+
+<style>
+/* Page 3: soft, rounded light falloff instead of a visible triangular beam. */
+#project-vault .vault-lamp .beam {
+  clip-path: none !important;
+  width: min(390px, 38vw) !important;
+  height: clamp(210px, 34vh, 330px) !important;
+  border-radius: 50% !important;
+  filter: blur(14px) !important;
+  opacity: 0 !important;
+  animation: none !important;
+  background-image: none !important;
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 18%, rgba(0,0,0,.75) 48%, transparent 100%) !important;
+  mask-image: linear-gradient(to bottom, #000 0%, #000 18%, rgba(0,0,0,.75) 48%, transparent 100%) !important;
+}
+#project-vault.lit .vault-lamp .beam {
+  opacity: .2 !important;
+  animation: none !important;
+}
+#project-vault.lit .vault-lamp:nth-child(1) .beam {
+  background: radial-gradient(ellipse 65% 48% at 50% 0%, rgba(90,220,255,.88) 0%, rgba(0,190,255,.44) 32%, rgba(0,190,255,.12) 65%, rgba(0,190,255,0) 100%) !important;
+}
+#project-vault.lit .vault-lamp:nth-child(2) .beam {
+  background: radial-gradient(ellipse 65% 48% at 50% 0%, rgba(255,155,210,.82) 0%, rgba(255,61,160,.42) 32%, rgba(255,61,160,.11) 65%, rgba(255,61,160,0) 100%) !important;
+}
+#project-vault.lit .vault-lamp:nth-child(3) .beam {
+  background: radial-gradient(ellipse 65% 48% at 50% 0%, rgba(90,220,255,.78) 0%, rgba(0,190,255,.36) 32%, rgba(0,190,255,.1) 65%, rgba(0,190,255,0) 100%) !important;
+}
+#project-vault.lit .vault-lamp .bulb {
+  opacity: .75 !important;
+  box-shadow: 0 0 5px rgba(220,250,255,.7), 0 0 12px rgba(0,190,255,.24) !important;
+}
+#project-vault.lit .vault-lamp:nth-child(2) .bulb,
+#project-vault.lit .vault-lamp:nth-child(3) .bulb {
+  box-shadow: 0 0 5px rgba(255,235,247,.65), 0 0 12px rgba(255,79,154,.2) !important;
+}
+@media (max-width: 700px) {
+  #project-vault .vault-lamp .beam { width: 43vw !important; height: 230px !important; }
+}
+</style>
+
+
+<style>
+/* Page 3 lighting refinement: brighter at the fixture, softly fading onto each box. */
+#project-vault .vault-lamp .beam {
+  top: calc(clamp(30px,5.8vh,58px) + 45px) !important;
+  width: min(420px, 42vw) !important;
+  height: clamp(300px, 42vh, 440px) !important;
+  clip-path: none !important;
+  border-radius: 50% !important;
+  filter: blur(18px) !important;
+  mix-blend-mode: screen !important;
+  background-size: 100% 100% !important;
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, rgba(0,0,0,.96) 20%, rgba(0,0,0,.72) 53%, rgba(0,0,0,.32) 78%, transparent 100%) !important;
+  mask-image: linear-gradient(to bottom, #000 0%, rgba(0,0,0,.96) 20%, rgba(0,0,0,.72) 53%, rgba(0,0,0,.32) 78%, transparent 100%) !important;
+  animation: none !important;
+}
+#project-vault.lit .vault-lamp .beam { opacity: .42 !important; }
+#project-vault.lit .vault-lamp:nth-child(1) .beam {
+  background: radial-gradient(ellipse 78% 92% at 50% 0%, rgba(210,250,255,.72) 0%, rgba(0,207,255,.42) 35%, rgba(0,190,255,.19) 68%, rgba(0,190,255,0) 100%) !important;
+}
+#project-vault.lit .vault-lamp:nth-child(2) .beam {
+  background: radial-gradient(ellipse 78% 92% at 50% 0%, rgba(255,240,249,.68) 0%, rgba(255,61,160,.38) 35%, rgba(255,61,160,.17) 68%, rgba(255,61,160,0) 100%) !important;
+}
+#project-vault.lit .vault-lamp:nth-child(3) .beam {
+  background: radial-gradient(ellipse 78% 92% at 50% 0%, rgba(210,250,255,.68) 0%, rgba(0,207,255,.38) 35%, rgba(0,190,255,.16) 68%, rgba(0,190,255,0) 100%) !important;
+}
+/* Let the colored light visibly reach the boxes without a hard triangular edge. */
+#project-vault.lit .vault-card {
+  box-shadow:
+    8px 12px 0 rgba(0,0,0,.52),
+    14px 22px 28px rgba(0,0,0,.64),
+    0 12px 28px color-mix(in srgb,var(--card-glow) 17%,transparent),
+    0 0 18px color-mix(in srgb,var(--card-glow) 13%,transparent),
+    inset 0 2px 0 rgba(255,255,255,.36),
+    inset -8px 0 14px rgba(0,0,0,.36),
+    inset 0 -9px 15px rgba(0,0,0,.45) !important;
+}
+#project-vault.lit .vault-card::before {
+  background:
+    radial-gradient(ellipse at 50% 0%,color-mix(in srgb,var(--card-glow) 42%,transparent),transparent 78%),
+    linear-gradient(135deg,rgba(255,255,255,.24),rgba(255,255,255,.025) 22%,transparent 50%) !important;
+}
+#project-vault.lit .vault-card::after {
+  opacity: .22 !important;
+  animation: none !important;
+  background: radial-gradient(ellipse at 50% 0%,color-mix(in srgb,var(--card-glow) 28%,transparent),transparent 76%) !important;
+  mix-blend-mode: screen !important;
+}
+#project-vault.lit .vault-floor { filter: brightness(1.18) saturate(1.08) !important; }
+@media (max-width:700px) {
+  #project-vault .vault-lamp .beam { width: 58vw !important; height: 300px !important; }
+}
+</style>
+
+
+<style>
+/* Page 3: give each project tile real-looking depth and a deliberate gallery arrangement. */
+#project-vault .vault-cards {
+  perspective: 1350px !important;
+  perspective-origin: 50% 45% !important;
+  transform-style: preserve-3d !important;
+}
+#project-vault .vault-card {
+  border: 1px solid color-mix(in srgb,var(--card-glow) 72%,#dcecff 28%) !important;
+  border-right: 8px solid color-mix(in srgb,var(--card-glow) 46%,#080d18 54%) !important;
+  border-bottom: 10px solid color-mix(in srgb,var(--card-glow) 34%,#03050b 66%) !important;
+  border-radius: 4px 2px 4px 3px !important;
+  background: linear-gradient(135deg,#101b2b 0%,#030711 42%,#050a14 100%) !important;
+  transform-style: preserve-3d !important;
+  backface-visibility: hidden;
+  box-shadow:
+    1px 1px 0 rgba(220,245,255,.45),
+    3px 3px 0 color-mix(in srgb,var(--card-glow) 38%,#101827 62%),
+    6px 7px 0 #101827,
+    9px 11px 0 #080d17,
+    13px 17px 20px rgba(0,0,0,.78),
+    0 0 18px color-mix(in srgb,var(--card-glow) 12%,transparent),
+    inset 1px 1px 0 rgba(255,255,255,.32),
+    inset -7px 0 12px rgba(0,0,0,.5),
+    inset 0 -8px 13px rgba(0,0,0,.58) !important;
+}
+/* PCB Design: left-hand box tilted slightly toward the viewer. */
+#project-vault .vault-card:nth-child(1),
+#project-vault.lit .vault-card:nth-child(1) {
+  z-index: 1 !important;
+  transform: translateY(15px) translateZ(12px) rotateY(13deg) rotateX(4deg) scale(.88) !important;
+  transform-origin: center center !important;
+}
+/* Projects: keep the middle box subtly farther back, as requested. */
+#project-vault .vault-card:nth-child(2),
+#project-vault.lit .vault-card:nth-child(2) {
+  z-index: 0 !important;
+  transform: translateY(2px) translateZ(-34px) rotateX(5deg) scale(.91) !important;
+  transform-origin: center center !important;
+}
+/* Simulations: right-hand box angled in the opposite direction. */
+#project-vault .vault-card:nth-child(3),
+#project-vault.lit .vault-card:nth-child(3) {
+  z-index: 1 !important;
+  transform: translateY(15px) translateZ(12px) rotateY(-13deg) rotateX(4deg) scale(.88) !important;
+  transform-origin: center center !important;
+}
+#project-vault.lit .vault-card {
+  box-shadow:
+    1px 1px 0 rgba(235,250,255,.5),
+    3px 3px 0 color-mix(in srgb,var(--card-glow) 44%,#101827 56%),
+    6px 7px 0 #101827,
+    9px 11px 0 #080d17,
+    13px 17px 22px rgba(0,0,0,.8),
+    0 0 24px color-mix(in srgb,var(--card-glow) 20%,transparent),
+    0 12px 24px color-mix(in srgb,var(--card-glow) 9%,transparent),
+    inset 1px 1px 0 rgba(255,255,255,.38),
+    inset -7px 0 12px rgba(0,0,0,.44),
+    inset 0 -8px 13px rgba(0,0,0,.54) !important;
+}
+#project-vault.lit .vault-card:hover,
+#project-vault.lit .vault-card:focus-visible {
+  z-index: 5 !important;
+  transform: translateY(-5px) translateZ(70px) rotateX(0deg) rotateY(0deg) scale(1.02) !important;
+}
+@media (max-width:700px) {
+  #project-vault .vault-cards { perspective:none !important; }
+  #project-vault .vault-card,
+  #project-vault.lit .vault-card:nth-child(1),
+  #project-vault.lit .vault-card:nth-child(2),
+  #project-vault.lit .vault-card:nth-child(3) {
+    transform: translateY(0) scale(.97) !important;
+    border-right-width:6px !important;
+    border-bottom-width:7px !important;
+  }
+}
+</style>
+
+
+<style>
+/* Page 3: correct the box perspective and make the center project box read as a solid object. */
+#project-vault .vault-card,
+#project-vault.lit .vault-card {
+  border: 1px solid color-mix(in srgb,var(--card-glow) 48%,#c7d8eb 52%) !important;
+  border-right: 7px solid #111b2b !important;
+  border-bottom: 8px solid #080e19 !important;
+  border-radius: 3px !important;
+  background: linear-gradient(145deg, #18263a 0%, #0a1220 38%, #030711 100%) !important;
+  box-shadow:
+    1px 1px 0 rgba(230,246,255,.28),
+    3px 4px 0 #1a2638,
+    6px 7px 0 #0a1220,
+    8px 11px 16px rgba(0,0,0,.68),
+    inset 1px 1px 0 rgba(255,255,255,.2),
+    inset -5px 0 8px rgba(0,0,0,.28),
+    inset 0 -5px 8px rgba(0,0,0,.3) !important;
+}
+/* PCB Design: tilt opposite to Simulations. */
+#project-vault .vault-card:nth-child(1),
+#project-vault.lit .vault-card:nth-child(1) {
+  z-index: 2 !important;
+  transform: translateY(14px) translateZ(12px) rotateY(-10deg) rotateX(2deg) scale(.89) !important;
+  transform-origin: center center !important;
+}
+/* Projects: farther back, but front-facing so it reads as a box, not a slanted card. */
+#project-vault .vault-card:nth-child(2),
+#project-vault.lit .vault-card:nth-child(2) {
+  z-index: 1 !important;
+  transform: translateY(4px) translateZ(-34px) rotateY(0deg) rotateX(0deg) scale(.91) !important;
+  transform-origin: center center !important;
+}
+/* Simulations: tilt the opposite way from PCB Design. */
+#project-vault .vault-card:nth-child(3),
+#project-vault.lit .vault-card:nth-child(3) {
+  z-index: 2 !important;
+  transform: translateY(14px) translateZ(12px) rotateY(10deg) rotateX(2deg) scale(.89) !important;
+  transform-origin: center center !important;
+}
+#project-vault.lit .vault-card:hover,
+#project-vault.lit .vault-card:focus-visible {
+  transform: translateY(-4px) translateZ(45px) rotateY(0deg) rotateX(0deg) scale(1.01) !important;
+  box-shadow: 2px 3px 0 #1a2638, 5px 7px 0 #080e19, 12px 18px 24px rgba(0,0,0,.72),
+    0 0 18px color-mix(in srgb,var(--card-glow) 16%,transparent),
+    inset 1px 1px 0 rgba(255,255,255,.24) !important;
+}
+@media (max-width:700px) {
+  #project-vault .vault-card,
+  #project-vault .vault-card:nth-child(1),
+  #project-vault .vault-card:nth-child(2),
+  #project-vault .vault-card:nth-child(3),
+  #project-vault.lit .vault-card:nth-child(1),
+  #project-vault.lit .vault-card:nth-child(2),
+  #project-vault.lit .vault-card:nth-child(3) {
+    transform: translateY(6px) scale(.96) !important;
+  }
+  #project-vault.lit .vault-card:hover,
+  #project-vault.lit .vault-card:focus-visible { transform: translateY(-3px) scale(1.02) !important; }
+}
+</style>
+
+
+<style>
+/* Page 3 final geometry pass: preserve the existing palette; change only perspective and side shading. */
+#project-vault .vault-card:nth-child(1),
+#project-vault.lit .vault-card:nth-child(1) {
+  /* PCB: left edge comes toward the viewer; right edge recedes. */
+  transform: translateY(14px) translateZ(12px) rotateY(11deg) rotateX(2deg) scale(.89) !important;
+  transform-origin: center center !important;
+  border-left: 8px solid #111b2b !important;
+  border-right: 1px solid color-mix(in srgb,var(--card-glow) 48%,#c7d8eb 52%) !important;
+  border-bottom: 8px solid #080e19 !important;
+  box-shadow:
+    -3px 2px 0 #1a2638,
+    -6px 5px 0 #0a1220,
+    -8px 11px 16px rgba(0,0,0,.68),
+    0 0 0 1px rgba(110,210,255,.07),
+    inset 2px 0 0 rgba(255,255,255,.18),
+    inset 5px 0 8px rgba(0,0,0,.3),
+    inset 0 -5px 8px rgba(0,0,0,.3) !important;
+}
+#project-vault .vault-card:nth-child(2),
+#project-vault.lit .vault-card:nth-child(2) {
+  /* Projects stays slightly behind and front-facing. */
+  transform: translateY(4px) translateZ(-34px) rotateY(0deg) rotateX(0deg) scale(.91) !important;
+  transform-origin: center center !important;
+}
+#project-vault .vault-card:nth-child(3),
+#project-vault.lit .vault-card:nth-child(3) {
+  /* Simulations: right edge comes toward the viewer; left edge recedes. */
+  transform: translateY(14px) translateZ(12px) rotateY(-11deg) rotateX(2deg) scale(.89) !important;
+  transform-origin: center center !important;
+  border-left: 1px solid color-mix(in srgb,var(--card-glow) 48%,#c7d8eb 52%) !important;
+  border-right: 8px solid #111b2b !important;
+  border-bottom: 8px solid #080e19 !important;
+  box-shadow:
+    3px 2px 0 #1a2638,
+    6px 5px 0 #0a1220,
+    8px 11px 16px rgba(0,0,0,.68),
+    0 0 0 1px rgba(110,210,255,.07),
+    inset -2px 0 0 rgba(255,255,255,.18),
+    inset -5px 0 8px rgba(0,0,0,.3),
+    inset 0 -5px 8px rgba(0,0,0,.3) !important;
+}
+/* Keep the current colors and lighting; hover simply brings the selected box forward. */
+#project-vault.lit .vault-card:nth-child(1):hover,
+#project-vault.lit .vault-card:nth-child(1):focus-visible,
+#project-vault.lit .vault-card:nth-child(3):hover,
+#project-vault.lit .vault-card:nth-child(3):focus-visible {
+  transform: translateY(-4px) translateZ(45px) rotateY(0deg) rotateX(0deg) scale(1.01) !important;
+}
+@media (max-width:700px) {
+  #project-vault .vault-card:nth-child(1),
+  #project-vault.lit .vault-card:nth-child(1) {
+    transform: translateY(6px) scale(.96) !important;
+    border-left-width: 6px !important;
+    border-right-width: 1px !important;
+  }
+  #project-vault .vault-card:nth-child(3),
+  #project-vault.lit .vault-card:nth-child(3) {
+    transform: translateY(6px) scale(.96) !important;
+    border-left-width: 1px !important;
+    border-right-width: 6px !important;
+  }
+}
+</style>
+
+
+<style>
+/* Page 4 contact section: reuse the existing dark background and neon palette. */
+#contact-page {
+  position:relative; isolation:isolate; min-height:82vh; padding:clamp(76px,11vh,130px) clamp(20px,6vw,90px) 30px;
+  overflow:hidden; background:linear-gradient(180deg,rgba(5,6,10,.96),rgba(7,10,19,.98));
+  border-top:1px solid rgba(46,242,255,.14);
+}
+#contact-page::before { content:""; position:absolute; inset:0; z-index:-1; pointer-events:none;
+  background:radial-gradient(ellipse at 18% 30%,rgba(0,229,255,.11),transparent 34%),radial-gradient(ellipse at 82% 62%,rgba(255,61,242,.10),transparent 36%);
+}
+#contact-page::after { content:""; position:absolute; inset:0; z-index:-1; pointer-events:none; opacity:.18;
+  background-image:linear-gradient(rgba(0,229,255,.22) 1px,transparent 1px),linear-gradient(90deg,rgba(255,61,242,.18) 1px,transparent 1px); background-size:54px 54px;
+  mask-image:linear-gradient(to bottom,transparent,#000 22%,#000 78%,transparent);
+}
+.contact-inner { width:min(100%,1000px); margin:0 auto; text-align:center; }
+#contact-title { margin:8px 0 0; font-family:var(--f-display); font-size:clamp(32px,6vw,68px); line-height:1.12; letter-spacing:-.045em; color:#f1f4ec; text-shadow:0 0 12px rgba(0,229,255,.22),0 0 34px rgba(255,61,242,.13); }
+.contact-subtitle { margin:16px 0 0; color:var(--muted); font-family:var(--f-mono); letter-spacing:.12em; font-size:clamp(12px,1.5vw,15px); }
+.contact-links { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:clamp(12px,2.4vw,24px); margin:clamp(38px,7vh,70px) auto 0; max-width:860px; }
+.contact-link { position:relative; min-height:174px; padding:28px 18px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:15px; color:var(--fg); text-decoration:none; font-family:var(--f-display); font-size:clamp(13px,1.7vw,17px); letter-spacing:.015em; border:1px solid rgba(46,242,255,.32); border-radius:18px; background:linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.012)); box-shadow:inset 0 0 24px rgba(0,229,255,.025),0 12px 35px rgba(0,0,0,.22); backdrop-filter:blur(10px); transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease; }
+.contact-link:nth-child(2) { border-color:rgba(255,61,242,.35); }
+.contact-icon { display:grid; place-items:center; width:58px; height:58px; border-radius:16px; color:var(--neon); background:rgba(0,229,255,.08); border:1px solid rgba(46,242,255,.28); box-shadow:0 0 22px rgba(0,229,255,.10); }
+.contact-link:nth-child(2) .contact-icon { color:#ff8af5; background:rgba(255,61,242,.08); border-color:rgba(255,61,242,.3); }
+.contact-icon svg { width:29px; height:29px; fill:currentColor; }
+.contact-arrow { position:absolute; top:14px; right:17px; color:var(--neon); font-family:var(--f-mono); font-size:18px; opacity:.72; }
+.contact-link:hover,.contact-link:focus-visible { transform:translateY(-7px); border-color:var(--neon); box-shadow:0 14px 36px rgba(0,0,0,.35),0 0 28px rgba(0,229,255,.12),inset 0 0 25px rgba(0,229,255,.06); }
+.contact-link:nth-child(2):hover,.contact-link:nth-child(2):focus-visible { border-color:#ff61f0; box-shadow:0 14px 36px rgba(0,0,0,.35),0 0 28px rgba(255,61,242,.12); }
+.contact-footer { margin:clamp(54px,10vh,100px) 0 0; padding-top:18px; border-top:1px solid rgba(255,255,255,.1); display:flex; justify-content:space-between; gap:16px; color:#7d8ba2; font:10px var(--f-mono); letter-spacing:.14em; }
+@media(max-width:650px) { #contact-page { min-height:auto; padding-top:72px; } .contact-links { grid-template-columns:1fr; max-width:360px; margin-top:34px; } .contact-link { min-height:112px; flex-direction:row; justify-content:flex-start; padding:18px 22px; } .contact-icon { width:50px; height:50px; flex:0 0 50px; } .contact-arrow { top:50%; transform:translateY(-50%); } .contact-footer { flex-direction:column; align-items:center; line-height:1.8; } }
+@media(prefers-reduced-motion:reduce) { .contact-link { transition:none; } }
+</style>
+
+<style id="unified-page-backgrounds">
+/* Pages 3 and 4 share the continuous animated background used by Pages 1 and 2.
+   Keep the workshop lighting and contact cards, but remove the separate wall-like fills. */
+#project-vault,
+#contact-page {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+#project-vault { border-top-color: transparent !important; }
+#project-vault::before {
+  background: none !important;
+  mask-image: none !important;
+}
+#project-vault::after {
+  /* Keep only the original page-wide background visible behind the workshop. */
+  background: none !important;
+  filter: none !important;
+}
+#contact-page { border-top-color: transparent !important; }
+#contact-page::before,
+#contact-page::after {
+  background: none !important;
+  opacity: 0 !important;
+}
+/* Avoid opaque section surfaces interrupting the smooth scroll transition. */
+#work, #project-vault, #contact-page {
+  background-color: transparent !important;
+}
+</style>
+
+<style id="background-scroll-softening">
+/* Background-only transition: keep the original ripple colors, then soften them gradually below Page 2. */
+#bg { opacity: 1; transition: opacity .25s linear, filter .25s linear; }
+</style>
+<script id="background-scroll-softening-script">
+(function () {
+  var bg = document.getElementById('bg');
+  var work = document.getElementById('work');
+  var vault = document.getElementById('project-vault');
+  var contact = document.getElementById('contact-page');
+  if (!bg || !vault || !contact) return;
+  var ticking = false;
+  function updateBackgroundSoftness() {
+    ticking = false;
+    var y = window.scrollY || window.pageYOffset || 0;
+    var start = Math.max(0, vault.offsetTop - window.innerHeight * 0.65);
+    var end = contact.offsetTop + contact.offsetHeight * 0.72;
+    var progress = Math.max(0, Math.min(1, (y - start) / Math.max(1, end - start)));
+    /* Page 1 and 2 retain their original look; Pages 3 and 4 become calmer and more blurred. */
+    var opacity = 1 - progress * 0.48;
+    var blur = 2 + progress * 10;
+    bg.style.opacity = opacity.toFixed(3);
+    bg.style.filter = 'blur(' + blur.toFixed(1) + 'px) saturate(' + (1.1 - progress * 0.18).toFixed(2) + ')';
+  }
+  window.addEventListener('scroll', function () {
+    if (!ticking) { ticking = true; window.requestAnimationFrame(updateBackgroundSoftness); }
+  }, { passive: true });
+  window.addEventListener('resize', updateBackgroundSoftness);
+  updateBackgroundSoftness();
+})();
+</script>
+
+<style id="projects-box-hover-fix">
+/* The middle "Projects" box had a forced resting transform (nth-child(2) + !important) that tied in
+   specificity with the hover rule and came later, so hover never applied. Give it its own hover/focus
+   rule, matching the PCB Design and Simulations boxes. */
+#project-vault .vault-card { pointer-events: auto !important; cursor: pointer; }
+/* Root cause: translateZ(-34px) put this box behind the .vault-cards plane, so that container
+   swallowed every hover/click. Keep it on the front plane; the "slightly further back" look
+   comes from scale + offset instead of depth. */
+#project-vault .vault-card:nth-child(2),
+#project-vault.lit .vault-card:nth-child(2) {
+  transform: translateY(0) translateZ(0) rotateY(0deg) rotateX(0deg) scale(.9) !important;
+}
+#project-vault.lit .vault-card:nth-child(2):hover,
+#project-vault.lit .vault-card:nth-child(2):focus-visible {
+  z-index: 6 !important;
+  transform: translateY(-4px) translateZ(45px) rotateY(0deg) rotateX(0deg) scale(1.01) !important;
+  border-color: var(--card-glow) !important;
+  box-shadow:
+    2px 3px 0 #1a2638,
+    5px 7px 0 #080e19,
+    12px 18px 24px rgba(0,0,0,.72),
+    0 0 18px color-mix(in srgb,var(--card-glow) 16%,transparent),
+    inset 1px 1px 0 rgba(255,255,255,.24) !important;
+  outline: none;
+}
+#project-vault.lit .vault-card:nth-child(2):hover canvas,
+#project-vault.lit .vault-card:nth-child(2):focus-visible canvas { opacity: 1; }
+@media (max-width:700px) {
+  #project-vault.lit .vault-card:nth-child(2):hover,
+  #project-vault.lit .vault-card:nth-child(2):focus-visible { transform: translateY(-3px) scale(1.02) !important; }
+}
+</style>
+
+</body></html>
